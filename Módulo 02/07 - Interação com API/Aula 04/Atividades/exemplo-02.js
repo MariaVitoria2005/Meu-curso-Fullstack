@@ -1,26 +1,21 @@
-let produto01="https://www.magazineluiza.com.br/fritadeira-eletrica-sem-oleo-air-fryer-mondial-family-afn-40-bi-preto-4l-com-timer/p/228887000/ep/efso/"
+let produto01="https://raw.githubusercontent.com/MariaVitoria2005/Meu-curso-Fullstack/master/M%C3%B3dulo%2002/07%20-%20Intera%C3%A7%C3%A3o%20com%20API/Aula%2004/Atividades/exemplo-02.json"
 async function procurar(){
     let resposta=await fetch(produto01)
-    let produto01 =await resposta.json()
-    console.log(produto01)
-    focus(let loja in produtos){
-        inserirProduto.innerHTML += `
-        <li class="produtos__item">
+    let loja =await resposta.json()
+    console.log(loja)
+    for(let celular in loja){
+        document.body.innerHTML += `
+        <div class="produtos__item">
             <div class="produtos__content">
-                <img src="${resposta[loja].img}" alt="Imagem de celular">
+                <img src="${loja[celular].img}" 
                 <div class="produtos__informacoes">
-                    <h3>${produtos[loja].nome}</h3>
-                    <p>${produtos[loja].descricao}</p>
-                    
-                    <h4>R$ ${produtos[loja].valorComDesconto}<s>R$ ${produtos[loja].valorSemDesconto}</s></h4>
-                    <p>${produtos[loja].tipoEntrega}</p>
+                    <p>${loja[celular].nome}</p>
+                    <h4>R$ ${loja[celular].valorComDesconto}<s>R$ ${loja[celular].valorSemDesconto}</s></h4>
+                    <p>${loja[celular].tipoEntrega}</p>
                 </div>
             </div>
-        </li>
+        </div>
         `;
     }
 }
-
-
-    
-
+procurar()
