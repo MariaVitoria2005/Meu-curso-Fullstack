@@ -1,0 +1,30 @@
+[
+        {
+        "img": "file:///C:/Users/Alunos/Pictures/c1c51d56774b8400d4665e422a755eb5%20-%20Copia.webp",
+        "nome": "Fritadeira Elétrica sem Óleo",
+        "valorSemDesconto":519.99,
+        "valorComDesconto": 321.10,
+        "tipoEntrega":"Frete GRÁTIS"
+        },
+        {
+        "img": "file:///C:/Users/Alunos/Pictures/d7191d22c879f3d84e8734c02e19b2cf.webp",
+        "nome": "Smartphone Motorola Moto G14 ",
+        "valorSemDesconto": 1.900,
+        "valorComDesconto":764.10,
+        "tipoEntrega":"Frete GRÁTIS"
+        },
+        {
+        "img": "file:///C:/Users/Alunos/Pictures/2409a1a273b1a85f6bf98d41f87e676e.webp",
+        "nome": "Armário de Cozinha Completa",
+        "valorSemDesconto":1.153,
+        "valorComDesconto":1.072,
+        "tipoEntrega":"frete GRÁTIS"
+        },
+        {
+        "img":"file:///C:/Users/Alunos/Pictures/f57e000da04b07a4594d40f95a3c563a.webp",
+        "nome":"Bicicleta TK3 Track XR 20 Juvenil Aro 20",
+        "valorSemDesconto":1.480,
+        "valorComDesconto":989.87,
+        "tipoEntrega":"Frete GRÁTIS"
+        }
+]
