@@ -1,4 +1,5 @@
 from django.db import models
+from django.utils import timezone
 
 class Cliente(models.Model):
     nome = models.CharField(max_length=100)
@@ -19,12 +20,12 @@ class Produto(models.Model):
         return self.nome
     
 class Pedido(models.Model):
-    Cliente = models.ForeignKey(Cliente, on_delete=models.CASCADE)
-    Produtos = models.ManyToManyField(Produto)
-    data_pedido = models.DateField()
+    cliente = models.ForeignKey(Cliente, on_delete=models.CASCADE)
+    produtos = models.ManyToManyField(Produto)
+    data_pedido = models.DateField(default=timezone.now)
 
     def __str__(self):
-        return f"pedido {self.id} - Cliente: {self.Cliente}"
+        return f"Pedido {self.id} - Cliente: {self.cliente.nome}"
     
 class Transportadora(models.Model):
     nome = models.CharField(max_length=100)
