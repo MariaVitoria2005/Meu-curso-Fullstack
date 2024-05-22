@@ -13,7 +13,6 @@ class Produto(models.Model):
     nome = models.CharField(max_length=50)
     preco = models.DecimalField(decimal_places=2,max_digits=7)
     descricao = models.TextField()
-    
 
     def __str__(self):
         return self.nome
