@@ -16,7 +16,9 @@
 
     <ul>
         {% for produto in produtos %}
-            <li>{{ produto.nome_produto}} - R$ {{ produto.valor_produto}}</li>
+            <li>{{ produto.nome_produto}} - R$ {{ produto.valor_produto}}
+                <img src="{{produto.foto.url}}" height=50>
+            </li>
         {% endfor %}
     </ul>
 </body>
