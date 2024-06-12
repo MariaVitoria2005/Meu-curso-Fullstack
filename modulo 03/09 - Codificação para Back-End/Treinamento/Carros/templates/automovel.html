@@ -1,0 +1,24 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'style.css' %}">
+</head>
+<body>
+    <p>
+        Minha lista de Automoveis:
+    </p>
+    <ul>
+        <a href="{% url 'pagina_inicial' %}">Página inicial</a>
+        {% for produto in produtos %}
+            <li>{{ produto.modelo }} 
+                <img src="{{produto.imagem.url}}" height=50>
+            </li>
+        {% endfor %}
+        
+    </ul>
+</body>
+</html>

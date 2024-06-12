@@ -5,6 +5,15 @@ class Categoria(models.Model):
 
     def __str__(self):
         return self.nome
+
+class Cadastro(models.Model):
+    nome = models.CharField(max_length=100)
+    email = models.EmailField( max_length=254)
+    Nascimento = models.DateField()
+
+    def __str__(self):
+        return self.nome
+    
     
 class Carro(models.Model):
     marca = models.CharField(max_length=100)
@@ -15,3 +24,4 @@ class Carro(models.Model):
 
     def __str__(self):
         return f"{self.marca} {self.modelo} ({self.ano})"
+    
