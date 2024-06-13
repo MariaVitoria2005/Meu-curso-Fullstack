@@ -12,6 +12,6 @@ def LinkCadastro(request):
     cadastro_lista = Cadastro.objects.all()
     return render(request, "cadastro.html",{'cadastros':cadastro_lista})
 
-def Linkcategoria(request):
-    categoria_lista = Categoria.objects.all()
-    return render(request, "categoria.html",{'categorias':categoria_lista})
+def LinkPagamento(request):
+    pagamento_lista = Pagamento.objects.all()
+    return render(request,"pagamento.html",{'pagamentos': pagamento_lista} )

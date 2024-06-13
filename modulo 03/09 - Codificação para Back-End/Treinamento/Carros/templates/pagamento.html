@@ -4,22 +4,21 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Document</title>  
     <link rel="stylesheet" type="text/css" href="{% static 'style.css' %}">
 </head>
 <body>
     <a href="{% url 'pagina_inicial' %}">Página inicial</a>
-
+    
     <p>
-        Minha lista de Automoveis:
+        Minha lista de Pagamento:
     </p>
 
     <ul>
-        {% for produto in produtos %}
-            <li>{{ produto.modelo }} 
-                <img src="{{produto.imagem.url}}" height=50>
-            </li>
+        {% for Pagamento in pagamentos %}
+            <li>{{Pagamento.tipo_de_pagamento}} - {{Pagamento.cadastro}} - {{Pagamento.carro}} - {{Pagamento.data_pagamento}} - {{Pagamento.valor}}</li>
         {% endfor %}
     </ul>
+
 </body>
 </html>

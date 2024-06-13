@@ -7,11 +7,12 @@
     <title>Document</title>
 </head>
 <body>
+    <a href="{% url 'pagina_inicial' %}">Página inicial</a>
+
     <p>
-        Esta é a página de Cadastro
+        Esta é a página de Cadastro:
     </p>
 
-    <a href="{% url 'pagina_inicial' %}">Página inicial</a>
     <ul>
         {% for cadastro in cadastros %}
             <li>{{cadastro.nome}} - {{cadastro.email}} - {{cadastro.Nascimento}}</li>
