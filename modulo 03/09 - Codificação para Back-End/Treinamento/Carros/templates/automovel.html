@@ -8,18 +8,20 @@
     <link rel="stylesheet" type="text/css" href="{% static 'style.css' %}">
 </head>
 <body>
-    <a href="{% url 'pagina_inicial' %}">Página inicial</a>
+    <a href="{% url 'pagina_inicial' %}">Home</a>
 
     <p>
-        Minha lista de Automoveis:
+       Lista de Automoveis:
     </p>
-
+   
     <ul>
         {% for produto in produtos %}
-            <li>{{ produto.modelo }} 
-                <img src="{{produto.imagem.url}}" height=50>
-            </li>
+        <div>
+                <img src="{{produto.imagem.url}}" height=100 width="auto">
+                {{ produto.modelo}} - R${{ produto.valor}}
+        </div>
         {% endfor %}
     </ul>
+
 </body>
 </html>

@@ -8,15 +8,17 @@
     <link rel="stylesheet" type="text/css" href="{% static 'style.css' %}">
 </head>
 <body>
-    <a href="{% url 'pagina_inicial' %}">Página inicial</a>
+    <a href="{% url 'pagina_inicial' %}">Home</a>
     
     <p>
-        Minha lista de Pagamento:
+        Lista de Pagamento:
     </p>
 
     <ul>
         {% for Pagamento in pagamentos %}
-            <li>{{Pagamento.tipo_de_pagamento}} - {{Pagamento.cadastro}} - {{Pagamento.carro}} - {{Pagamento.data_pagamento}} - {{Pagamento.valor}}</li>
+        <div>
+            {{Pagamento.tipo_de_pagamento}} - {{Pagamento.carro}} - {{Pagamento.valor}}
+        </div>
         {% endfor %}
     </ul>
 

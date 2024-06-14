@@ -7,16 +7,16 @@
     <title>Document</title>
 </head>
 <body>
-    <a href="{% url 'pagina_inicial' %}">Página inicial</a>
-
-    <p>
-        Esta é a página de Cadastro:
-    </p>
+    <a href="{% url 'pagina_inicial' %}">Home</a>
+    <h3>Página de cadastro:</h3>
 
     <ul>
         {% for cadastro in cadastros %}
-            <li>{{cadastro.nome}} - {{cadastro.email}} - {{cadastro.Nascimento}}</li>
+        <div>
+           {{cadastro.nome}} - {{cadastro.Nascimento}} - {{cadastro.Celular}}
+        </div>
         {% endfor %}
+        
     </ul>
 </body>
 </html>
