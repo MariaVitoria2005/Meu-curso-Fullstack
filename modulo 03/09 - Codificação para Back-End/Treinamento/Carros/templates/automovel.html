@@ -17,8 +17,8 @@
     <ul>
         {% for produto in produtos %}
         <div>
-                <img src="{{produto.imagem.url}}" height=100 width="auto">
-                {{ produto.modelo}} - R${{ produto.valor}}
+            <img src="{{produto.imagem.url}}" height=130 width="auto">
+            {{ produto.modelo}} - R${{ produto.valor}}
         </div>
         {% endfor %}
     </ul>
