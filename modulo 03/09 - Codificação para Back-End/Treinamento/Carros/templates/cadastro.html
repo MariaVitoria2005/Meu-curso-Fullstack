@@ -10,13 +10,11 @@
     <a href="{% url 'pagina_inicial' %}">Home</a>
     <h3>Página de cadastro:</h3>
 
-    <ul>
-        {% for cadastro in cadastros %}
+    {% for cadastro in cadastros %}
         <div>
            {{cadastro.nome}} - {{cadastro.Nascimento}} - {{cadastro.Celular}}
         </div>
-        {% endfor %}
-        
-    </ul>
+    {% endfor %}
+
 </body>
 </html>

@@ -1,8 +1,10 @@
 p{
+    padding-top: 20px;
     color:rgb(0, 0, 0);
     font-size: 50;
     /*box-shadow: 6px 6px 6px rgb(0, 0, 0);*/
     font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    
 }
 
 body{
@@ -38,5 +40,6 @@ div{
     align-items: center;
     flex-direction: column;
     display: inline-block;
+    color: blueviolet;
     
 }

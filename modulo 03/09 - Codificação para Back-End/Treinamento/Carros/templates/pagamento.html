@@ -14,13 +14,12 @@
         Lista de Pagamento:
     </p>
 
-    <ul>
-        {% for Pagamento in pagamentos %}
+    {% for Pagamento in pagamentos %}
         <div>
-            {{Pagamento.tipo_de_pagamento}} - {{Pagamento.carro}} - {{Pagamento.valor}}
+            <p>{{Pagamento.tipo_de_pagamento}} </p>
+            
         </div>
-        {% endfor %}
-    </ul>
+    {% endfor %}
 
 </body>
 </html>

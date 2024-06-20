@@ -17,15 +17,12 @@ class Carro(models.Model):
     valor = models.DecimalField(decimal_places=2, max_digits=10)
 
     def __str__(self):
-        return f"{self.modelo}"
+        return self.marca
+    
     
     
 class Pagamento(models.Model):
     tipo_de_pagamento = models.CharField(max_length=100)
-    cadastro = models.ForeignKey(Cadastro, on_delete=models.CASCADE)
-    carro = models.ForeignKey(Carro, on_delete=models.CASCADE)
-    data_pagamento = models.DateField()
-    valor = models.DecimalField(decimal_places=2, max_digits=10)
 
     def __str__(self):
         return self.tipo_de_pagamento 

@@ -14,14 +14,15 @@
        Lista de Automoveis:
     </p>
    
-    <ul>
-        {% for produto in produtos %}
+    {% for produto in produtos %}
         <div>
-            <img src="{{produto.imagem.url}}" height=130 width="auto">
-            {{ produto.modelo}} - R${{ produto.valor}}
+            <p> <img src="{{produto.imagem.url}}" height=130 width="auto"></p>
+            
+            <p>{{ produto.modelo}} </p>
+            <p>R$ {{ produto.valor}}</p>
         </div>
-        {% endfor %}
-    </ul>
+    {% endfor %}
+  
 
 </body>
 </html>
