@@ -3,7 +3,7 @@ from .models import *
 
 def VerProdutos(request):
     produtos_lista = Produto.objects.all()
-    return render(request, "lista_produtos.html", {"produtos": produtos_lista})
+    return render(request, "lista-produtos.html", {"produtos": produtos_lista})
 
 
 def DetalhesProduto(request, id_produto):
