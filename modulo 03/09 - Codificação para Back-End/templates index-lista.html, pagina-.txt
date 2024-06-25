@@ -1,0 +1,10 @@
+templates: index-lista.html, pagina-cadastro, Detalhes-do-objeto.html
+
+index-lista.html
+(nome link detalhes(que vai ate a Detalhes-do-objeto.html))
+(um butao cadastro(que vai para a pagina-cadastro))
+(amostrar a lista da pagina cadastro)
+
+pagina-cadastro
+
+fazer a aula 12,para acarecer ao cadastro

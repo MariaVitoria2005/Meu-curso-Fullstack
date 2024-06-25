@@ -38,5 +38,7 @@ div{
     margin: 20px;
     align-items: center;
     /*flex-direction: column;*/
-    display: inline-block;
+    display: flex;
+    column-gap: 20px;
+    
 }
