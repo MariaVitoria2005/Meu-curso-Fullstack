@@ -1,8 +1,7 @@
-CARROS ESPPORTIVOS
+CARROS ESPORTIVOS(APPS)
 
-MODELS.PY (APPS)
+MODELS.PY
 
- 
 class Cadastro(models.Model):
     nome = models.CharField(max_length=100)
     email = models.EmailField( max_length=254)
@@ -30,8 +29,7 @@ class Pagamento(models.Model):
     def __str__(self):
         return self.tipo_de_pagamento 
 
-
-ADMIN.PY (APPS)
+ADMIN.PY
 
 from django.contrib import admin
 from .models import *
@@ -40,7 +38,7 @@ admin.site.register(Carro)
 admin.site.register(Cadastro)
 admin.site.register(Pagamento)
 
-URLS.PY(APPS)
+URLS.PY
 
 from django.urls import path
 from .views import *
@@ -48,11 +46,11 @@ from .views import *
 urlpatterns = [
     path("", LinkInicial, name="pagina_inicial"),
     path('automoveis', VerProdutos, name ="pagina_produtos"),
-    path("cadastro", LinkCadastro, name="pagina_cadastro"),
+	path("cadastro", LinkCadastro, name="pagina_cadastro"),
     path("pagamento", LinkPagamento, name = "pagina_pagamento"),
 ]
 
-VIEWS.PY(APPS)
+VIEWS.PY  
 
 from django.shortcuts import render
 from .models import *
@@ -71,5 +69,3 @@ def LinkCadastro(request):
 def LinkPagamento(request):
     pagamento_lista = Pagamento.objects.all()
     return render(request,"pagamento.html",{'pagamentos': pagamento_lista} )
-
-

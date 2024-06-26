@@ -4,22 +4,20 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>IMPÉRIO DOS C@RRO$</title>
+    <title>Document</title>  
     <link rel="stylesheet" type="text/css" href="{% static 'style.css' %}">
 </head>
 <body>
     <a href="{% url 'pagina_inicial' %}">Home</a>
-
+    
     <p>
-       Lista de Automoveis:
+        Lista de Pagamento:
     </p>
-   
-    {% for produto in produtos %}
+
+    {% for Pagamento in pagamentos %}
         <div>
-            <p> <img src="{{produto.imagem.url}}" height=130 width="auto"></p>
+            <p>{{Pagamento.tipo_de_pagamento}} </p>
             
-            <p>{{ produto.modelo}} </p>
-            <p>R$ {{ produto.valor}}</p>
         </div>
     {% endfor %}
 

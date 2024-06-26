@@ -8,7 +8,7 @@
     <link rel="stylesheet" type="text/css" href="{% static 'style.css' %}">
 </head>
 <body>
-    <a href="{% url 'pagina_inicial' %}">Home</a>
+    <a href="{% url 'pagina_inicial'  %}">Home</a>
 
     <p>
        Lista de Automoveis:
@@ -16,10 +16,10 @@
    
     {% for produto in produtos %}
         <div>
-            <p> <img src="{{produto.imagem.url}}" height=130 width="auto"></p>
-            
+            <p><img src="{{produto.imagem.url}}" height=130 width="auto"></p>
             <p>{{ produto.modelo}} </p>
             <p>R$ {{ produto.valor}}</p>
+            <a href= "{% url"detalhes_produto" produto.id %}">ver detalhes </a>
         </div>
     {% endfor %}
 
