@@ -25,8 +25,9 @@ def CriarCadastro(request):
     busca_Cadastro = Cadastro.objects.all()
     if request.method == "POST":
         novo_Cadastro = FormularioCadastro(request.POST)
-        novo_Cadastro.save()
-        novo_Cadastro =  FormularioCadastro()
+        if novo_Cadastro.is_valid(): 
+            novo_Cadastro.save()
+            novo_Cadastro =  FormularioCadastro()
     else:
         novo_Cadastro =  FormularioCadastro()
     return render(request, "cadastro.html", {"formulario": novo_Cadastro, "cadastros": busca_Cadastro})

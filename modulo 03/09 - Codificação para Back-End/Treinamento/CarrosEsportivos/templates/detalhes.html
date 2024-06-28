@@ -1,12 +1,14 @@
 {% load static %}
+<link rel="stylesheet" type="text/css" href="{% static 'style.css' %}">
 <html>
-    <a href="{% url "pagina_produtos" %}"></a>
+    <a href="{% url "pagina_produtos" %}">voltar</a>
+    <a href="{% url 'pagina_inicial' %}">Home</a>
     <body>
         <p>
            Detalhes dos carros:
         </p>
         <ul>
-            {% for produtos in produto %}
+            {% for produto in produtos %}
                 <li>{{ produtos.modelo }}</li>
             {% endfor %}
         </ul>

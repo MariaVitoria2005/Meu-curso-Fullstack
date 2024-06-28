@@ -2,7 +2,7 @@ from django.db import models
 
 class Cadastro(models.Model):
     nome = models.CharField(max_length=100)
-    email = models.EmailField( max_length=254)
+    email = models.EmailField()
     Nascimento = models.DateField()
     Celular= models.IntegerField()
 

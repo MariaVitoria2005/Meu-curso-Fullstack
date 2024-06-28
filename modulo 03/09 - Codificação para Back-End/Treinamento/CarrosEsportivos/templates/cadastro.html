@@ -11,13 +11,13 @@
             <button type="submit">Salvar</button>
             <button type="reset" onclick="resetForm()">Cancelar</button>
         </form>
-        
+
         <h3>
             Lista de cadastro:
         </h3>
         <ul>
         {% for Cadastro in cadastros %}
-            <li>{{Cadastro.nome}} - {{Cadastro.email}} - {{Cadastro.Nascimento}} - {{Cadastro.Celular}} </li>
+            <li>{{Cadastro.nome}} - {{Cadastro.Nascimento}} - {{Cadastro.Celular}}</li>
         {% endfor %}
         </ul>
     </body>

@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h3>Lista de abençoados:</h3>
+    <a href ={href="pg_new_abencoado"}>cadastrar Abençoado</a>
+
+    <ul>
+        {% for x in abencoados %}
+            <li>Nome: {{x.nome}} - idade: {{x.idade}}</li>
+        {%endfor%}
+    </ul>
+
+    <h3>Lista de Tacas:</h3>
+    <a href ="">cadastrar Taca</a>
+
+    <ul>
+        {% for y in tacas %}
+            <li>{{y.dono.nome}} - {{y.motivo}} - {{y.instrumento}}</li>
+        {%endfor%}
+    </ul>
+
+</body>
+</html>
