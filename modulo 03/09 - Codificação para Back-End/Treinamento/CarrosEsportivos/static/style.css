@@ -1,6 +1,6 @@
 p{
     /* padding-top: 20px;*/
-     color:rgb(0, 0, 0);
+     color:rgb(104, 224, 0);
      font-size: 50;
      /*box-shadow: 6px 6px 6px rgb(0, 0, 0);*/
      font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
@@ -9,12 +9,12 @@ p{
 body{
      background-size: cover;
      background-repeat: no-repeat; 
-     background-image: url("https://www.interestingreality.com/wp-content/uploads/2023/10/toys-for-kids.jpg"  )
+     background-image: url("https://wallpaperaccess.com/full/1354481.jpg")
 }
  
 a{
     font-size: 20;
-    color: rgb(0, 0, 0); 
+    color: rgb(248, 0, 0); 
     margin: 20px;
     border-radius: 10px;
     border: solid 1px;

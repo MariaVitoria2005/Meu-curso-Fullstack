@@ -1,0 +1,105 @@
+TEMPLATES
+
+INDEX.HTML
+
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="{% static 'style.css' %}">
+    <title>Document</title>
+</head>
+<body>
+    <p>
+        IMPÉRIO DOS C@RRO$
+    </p>
+
+    <a href="{% url 'pagina_cadastro' %}">CADASTROS</a>
+    <a href="{% url 'pagina_produtos' %}">AUTOMOVEIS</a>
+    <a href="{% url 'pagina_pagamento' %}">PAGAMENTOS</a>
+    
+</body>
+</html>
+
+CADASTROS.HTML
+
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="{% static 'style.css' %}">
+    <title>Document</title>
+</head>
+<body>
+    <a href="{% url 'pagina_inicial' %}">Home</a>
+    <h3>Página de cadastro:</h3>
+
+    {% for cadastro in cadastros %}
+        <div>
+           {{cadastro.nome}} - {{cadastro.Nascimento}} - {{cadastro.Celular}}
+        </div>
+    {% endfor %}
+
+</body>
+</html>
+
+
+AUTOMOVEL.HTML
+
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IMPÉRIO DOS C@RRO$</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'style.css' %}">
+</head>
+<body>
+    <a href="{% url 'pagina_inicial' %}">Home</a>
+
+    <p>
+       Lista de Automoveis:
+    </p>
+   
+    {% for produto in produtos %}
+        <div>
+            <p> <img src="{{produto.imagem.url}}" height=130 width="auto"></p>
+            
+            <p>{{ produto.modelo}} </p>
+            <p>R$ {{ produto.valor}}</p>
+        </div>
+    {% endfor %}
+
+</body>
+</html>
+
+PAGAMENTO.PY
+
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>  
+    <link rel="stylesheet" type="text/css" href="{% static 'style.css' %}">
+</head>
+<body>
+    <a href="{% url 'pagina_inicial' %}">Home</a>
+    
+    <p>
+        Lista de Pagamento:
+    </p>
+
+    {% for Pagamento in pagamentos %}
+        <div>
+            <p>{{Pagamento.tipo_de_pagamento}} </p>
+            
+        </div>
+    {% endfor %}
+
+</body>
+</html>

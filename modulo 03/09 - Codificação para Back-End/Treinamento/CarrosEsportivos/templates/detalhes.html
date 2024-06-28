@@ -7,7 +7,7 @@
         </p>
         <ul>
             {% for produtos in produto %}
-                <li>{{ produtos.modelo }} - <a href="{% url 'detalhes_produto' produto.id %}">Ver produto</a></li>
+                <li>{{ produtos.modelo }}</li>
             {% endfor %}
         </ul>
     </body>

@@ -73,3 +73,75 @@ def LinkPagamento(request):
     return render(request,"pagamento.html",{'pagamentos': pagamento_lista} )
 
 
+
+
+
+STYLE.CSS(STATIC)
+
+
+p{
+   /* padding-top: 20px;*/
+    color:rgb(0, 55, 255);
+    font-size: 50;
+    /*box-shadow: 6px 6px 6px rgb(0, 0, 0);*/
+    font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+
+body{
+    background-size: cover;
+    background-repeat: no-repeat; 
+    background-image: url("https://th.bing.com/th/id/R.d2f23283692fff5b39f69f46f549b95b?rik=j3ZIlU0cVaqogw&riu=http%3a%2f%2fsurgiu.com.br%2fwp-content%2fuploads%2f2016%2f07%2f13423911_590764291088869_6633453929827701487_n.jpg&ehk=55wF1n9bRLzYpCmWGr%2bye%2bAU2cH7WNIewPmf1LCUgfo%3d&risl=&pid=ImgRaw&r=0;")
+}
+
+a{
+    font-size: 20;
+    color: rgb(0, 0, 0); 
+    margin: 20px;
+    border-radius: 10px;
+    border: solid 1px;
+    box-shadow: 4px 4px 4px rgb(0, 0, 0);
+    text-decoration: none;
+    cursor: pointer;
+    flex-direction: column;
+    padding: 10px;
+}
+
+li{
+    list-style: none;
+}
+
+div{
+    border-radius: 10px;
+    box-shadow: 4px 4px 4px rgb(0, 0, 0);
+    /*width: 250px;*/
+    border: 1px solid rgb(0, 0, 0);
+    padding: 5px;
+    margin: 20px;
+    align-items: center;
+    /*flex-direction: column;*/
+    display: flex;
+    column-gap: 20px;
+    
+}
+
+SETTINGS.PY(PROJETO)
+
+STATICFILES_DIRS = [os.path.join(BASE_DIR, "static")]
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+STATIC_URL = '/static/'
+
+URLS.PY(PROJETO)
+
+
+from django.contrib import admin
+from django.urls import path, include
+from django.conf import settings
+from django.conf.urls.static import static
+
+urlpatterns = [
+    path('admin/', admin.site.urls),
+    path('', include ('apps.carros.urls')),  
+]
+
+if settings.DEBUG:
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
