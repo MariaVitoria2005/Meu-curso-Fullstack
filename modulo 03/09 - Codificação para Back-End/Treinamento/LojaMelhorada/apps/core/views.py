@@ -15,4 +15,4 @@ def CriarAbencoado(request):
             return redirect("pg_inicial")
     else:
         novo_Abencoado = Formularioabencoado()
-    return render(request, "new-abencoado.html", {"formulario": novo_Abencoado})
+    return render(request, "new-abencoados.html", {"formulario": novo_Abencoado})

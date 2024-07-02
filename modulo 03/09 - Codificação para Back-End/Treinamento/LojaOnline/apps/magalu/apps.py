@@ -1,5 +1,6 @@
 from django.apps import AppConfig
 
-class VeiculosConfig(AppConfig):
+
+class MagaluConfig(AppConfig):
     default_auto_field = 'django.db.models.BigAutoField'
-    name = 'apps.Veiculos'
+    name = 'apps.magalu'
