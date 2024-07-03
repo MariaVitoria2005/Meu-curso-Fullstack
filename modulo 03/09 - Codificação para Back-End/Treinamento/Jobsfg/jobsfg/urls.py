@@ -1,5 +1,5 @@
 """
-URL configuration for LojaOnline project.
+URL configuration for jobsfg project.
 
 The `urlpatterns` list routes URLs to views. For more information please see:
     https://docs.djangoproject.com/en/5.0/topics/http/urls/
@@ -21,7 +21,7 @@ from django.conf.urls.static import static
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path("", include("apps.magalu.urls"))
+    path("",include ("apps.job.urls"))
 ]
 
 if settings.DEBUG:

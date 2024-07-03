@@ -1,9 +1,9 @@
 from django import forms
 from .models import *
 
-class Formulariocadastro(forms.ModelForm):
+class FormularioCadastro(forms.ModelForm):
     class Meta:
-        model = cadastro
+        model = Cadastro
         fields = '__all__'
 
 class FormularioProduto(forms.ModelForm):
@@ -11,7 +11,7 @@ class FormularioProduto(forms.ModelForm):
         model = Produto
         fields = '__all__'
 
-class Formulariocategoria(forms.ModelForm):
+class FormularioCategoria(forms.ModelForm):
     class Meta:
-        model = categoria
+        model = Categoria
         fields = '__all__'

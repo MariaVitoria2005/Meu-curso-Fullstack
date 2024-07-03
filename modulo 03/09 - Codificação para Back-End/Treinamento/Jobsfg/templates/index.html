@@ -1,0 +1,22 @@
+
+<html>
+    <body> 
+        <h3>
+            Lista de Vaga:
+        </h3>
+
+        <a href= "{pg_craiar_vaga}">
+            <button>+ vaga</button>
+        </a>
+
+        {% for vaga in vagas %}
+            <a href="{%pg_criar_empresa%}">
+                <div style="boder: 1 px solid #000;width:fit-content; color;#000;tect-decoretion:none">
+                    <p >{{ vaga.titulo }}</p>
+                    <img src={{ vaga.capa.url }} with="250"></img>
+                </div>
+            </a>
+        {% endfor %}
+
+    </body>
+</html>

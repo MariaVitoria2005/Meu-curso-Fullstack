@@ -19,8 +19,6 @@ class Carro(models.Model):
     def __str__(self):
         return self.marca
     
-    
-    
 class Pagamento(models.Model):
     tipo_de_pagamento = models.CharField(max_length=100)
 

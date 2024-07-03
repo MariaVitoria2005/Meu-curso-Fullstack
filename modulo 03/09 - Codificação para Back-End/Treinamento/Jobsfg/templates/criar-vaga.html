@@ -1,0 +1,17 @@
+<html>
+    <body>
+        <h3>Lista de vagas</h3>
+
+        <a href="{%"pg_criar_empresa"%}">
+            <button>+ Empressa</button>
+        </a>
+
+        <form method="post" >
+            {% csrf_token %}
+            {{ formulario.as_p }}
+            <button type="submit">Salvar</button>
+            <a href={% url"pg_inicial"%}><button type="reset">Cancelar</button></a>
+        </form>
+        
+    </body>
+</html>
