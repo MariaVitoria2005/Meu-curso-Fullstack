@@ -31,3 +31,14 @@ def CriarCadastro(request):
     else:
         novo_Cadastro =  FormularioCadastro()
     return render(request, "cadastro.html", {"formulario": novo_Cadastro, "cadastros": busca_Cadastro})
+
+def CadastroCarros(request):
+    busca_Cadastro = Carro.objects.all()
+    if request.method == "POST":
+        novo_Cadastro = FormularioCarro(request.POST,request.FILES)
+        if novo_Cadastro.is_valid(): 
+            novo_Cadastro.save()
+            novo_Cadastro =  FormularioCarro()
+    else:
+        novo_Cadastro =  FormularioCarro()
+    return render(request, "cadastro-carro.html", {"formulario": novo_Cadastro, "carros": busca_Cadastro})

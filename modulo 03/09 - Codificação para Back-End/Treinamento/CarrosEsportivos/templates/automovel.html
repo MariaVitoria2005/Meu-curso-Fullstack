@@ -13,16 +13,16 @@
     <p>
        Lista de Automoveis:
     </p>
-   
-    {% for produto in produtos %}
-        <div>
-            <p><img src="{{produto.imagem.url}}" height=130 width="auto"></p>
-            <p>{{ produto.modelo}} </p>
-            <p>R$ {{ produto.valor}}</p>
 
-            <a href="{% url "detalhes_produto" produto.id %}">Detalhes</a>
-        </div>
-    {% endfor %}
+        {% for produto in produtos %}
+            <div>
+                <p><img src="{{produto.imagem.url}}" height=130 width="auto"></p>
+                <p>{{ produto.modelo}} </p>
+                <p>R$ {{ produto.valor}}</p>
+
+                <a href="{% url "detalhes_produto" produto.id %}">Detalhes</a>
+            </div>
+        {% endfor %}
 
 </body>
 </html>

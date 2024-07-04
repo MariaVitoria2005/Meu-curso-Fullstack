@@ -7,5 +7,6 @@ urlpatterns = [
     path("cadastro", CriarCadastro, name="pagina_cadastro"),
     path("pagamento", LinkPagamento, name = "pagina_pagamento"),
     path("Criar", CriarCadastro, name="oiii"),
-    path("ver_produto/<int:id_produto>/", DetalhesCarro, name="detalhes_produto")
+    path("ver_produto/<int:id_produto>/", DetalhesCarro, name="detalhes_produto"),
+    path("x",CadastroCarros, name = "cadastro-carro")
 ]

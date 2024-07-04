@@ -1,0 +1,12 @@
+<html>
+    <body>
+        <p>
+            Lista de Bolos:
+        </p>
+        <ul>
+            {% for bolo in bolos %}
+                <li>{{ bolo.sabor }} - <a href="{% url 'conf_excluir_bolo' bolo.id %}">Excluir bolo</a></li>
+            {% endfor %}
+        </ul>
+    </body>
+</html>
