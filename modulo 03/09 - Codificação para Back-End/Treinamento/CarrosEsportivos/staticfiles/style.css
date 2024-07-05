@@ -5,6 +5,11 @@ p{
      /*box-shadow: 6px 6px 6px rgb(0, 0, 0);*/
      font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
 }
+h4{
+     font-size: 50px;
+     font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+
+}
  
 body{
      background-size: cover;
@@ -41,6 +46,8 @@ div{
      align-items: center;
      flex-direction: column;
      display: flex;
+     cursor: pointer;
+     justify-content: center;
 }
 
 /*.lista-card{
@@ -49,3 +56,11 @@ div{
      column-gap: 15px;
      row-gap: 15px;
 }*/
+/*.card.button{
+     background-color: #007bff;
+     color: #fff;
+     border: none;
+     padding: 8px 16px;
+     border-radius: 4px;
+     
+}

@@ -19,7 +19,7 @@ def LinkCadastro(request):
 
 def LinkPagamento(request):
     pagamento_lista = Pagamento.objects.all()
-    return render(request,"pagamento.html",{'pagamentos': pagamento_lista} )
+    return render(request, "pagamento.html",{'pagamentos': pagamento_lista})
 
 def CriarCadastro(request):
     busca_Cadastro = Cadastro.objects.all()

@@ -10,19 +10,21 @@
 <body>
     <a href="{% url 'pagina_inicial'  %}">Home</a>
 
-    <p>
+    <h3>
        Lista de Automoveis:
-    </p>
-
+    </h3>
+    <div class="lista-carros">
         {% for produto in produtos %}
-            <div>
+
+            <div class="card">
                 <p><img src="{{produto.imagem.url}}" height=130 width="auto"></p>
                 <p>{{ produto.modelo}} </p>
                 <p>R$ {{ produto.valor}}</p>
-
                 <a href="{% url "detalhes_produto" produto.id %}">Detalhes</a>
             </div>
         {% endfor %}
+        
 
+    </div>
 </body>
 </html>

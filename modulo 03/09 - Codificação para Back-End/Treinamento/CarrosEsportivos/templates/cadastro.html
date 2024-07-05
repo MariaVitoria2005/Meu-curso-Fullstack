@@ -3,22 +3,23 @@
 <html>
     <body>
         <a href="{% url 'pagina_inicial' %}">Home</a>
-        <h3>Formulário de cadastro</h3>
+        <h3>Formulário de cadastro:</h3>
 
         <form method="post">
             {% csrf_token %}
             {{ formulario.as_p }}
-            <button type="submit">Salvar</button>
+            <button type="submit" >Salvar</button>
             <button type="reset" onclick="resetForm()">Cancelar</button>
         </form>
 
         <h3>
-            Lista de cadastro:
+            Lista de Clientes::
         </h3>
+        
         <ul>
-        {% for Cadastro in cadastros %}
-            <li>{{Cadastro.nome}} - {{Cadastro.Nascimento}} - {{Cadastro.Celular}}</li>
-        {% endfor %}
+            {% for Cadastro in cadastros %}
+                <li>{{Cadastro.nome}} - {{Cadastro.Nascimento}} -{{Cadastro.Email}}- {{Cadastro.Celular}}</li>
+            {% endfor %}
         </ul>
     </body>
 </html>

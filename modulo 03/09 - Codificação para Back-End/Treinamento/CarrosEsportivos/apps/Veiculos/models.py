@@ -22,7 +22,6 @@ class Carro(models.Model):
 class Pagamento(models.Model):
     tipo_de_pagamento = models.CharField(max_length=100)
 
+    
     def __str__(self):
         return self.tipo_de_pagamento 
-    
-    

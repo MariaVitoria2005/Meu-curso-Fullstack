@@ -5,6 +5,11 @@ p{
      /*box-shadow: 6px 6px 6px rgb(0, 0, 0);*/
      font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
 }
+h4{
+     font-size: 50px;
+     font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+
+}
  
 body{
      background-size: cover;
@@ -31,21 +36,22 @@ li{
      list-style: none;
 }
  
-div{
+.card{
      border-radius: 10px;
      box-shadow: 4px 4px 4px rgb(0, 0, 0);
-     width: 250px;
+     width:fit-content;
+     height: fit-content;
      border: 1px solid rgb(0, 0, 0);
      padding: 5px;
-     margin: 20px;
      align-items: center;
      flex-direction: column;
      display: flex;
+     cursor: pointer;
+    
 }
-
-/*.lista-card{
-     display:flex;
+.lista-carros{
+     display: flex;
      flex-wrap: wrap;
      column-gap: 15px;
      row-gap: 15px;
-}*/
+}

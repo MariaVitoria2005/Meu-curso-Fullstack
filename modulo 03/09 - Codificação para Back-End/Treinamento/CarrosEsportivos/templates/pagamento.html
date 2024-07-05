@@ -10,17 +10,11 @@
 </head>
 <body>
     <a href="{% url 'pagina_inicial' %}">Home</a>
-    
-    <p>
-        Lista de Pagamento:
-    </p>
+
+    <p>Lista de Pagamento:</p>
 
     {% for Pagamento in pagamentos %}
-        <div>
-            <p>{{Pagamento.tipo_de_pagamento}} </p>
-            
-        </div>
+        <p>{{Pagamento.tipo_de_pagamento}}</p> 
     {% endfor %}
-
 </body>
 </html>
