@@ -1,0 +1,12 @@
+<html>
+    <body>
+        <p>
+            Lista de Carros:
+        </p>
+        <ul>
+            {% for produto  in produtos %}
+                <li>{{ produto.marca }} - {{ produto.modelo }} - {{ produto.ano }} - {{ produto.valor }} <a href="{% url 'pg_editar_carro' Carro.id %}">Editar Carro</a></li>
+            {% endfor %}
+        </ul>
+    </body>
+</html>

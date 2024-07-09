@@ -8,5 +8,6 @@ urlpatterns = [
     path("pagamento", LinkPagamento, name = "pagina_pagamento"),
     path("Criar", CriarCadastro, name="oiii"),
     path("ver_produto/<int:id_produto>/", DetalhesCarro, name="detalhes_produto"),
-    path("x",CadastroCarros, name = "cadastro-carro")
+    path("x",CadastroCarros, name = "cadastro-carro"),
+    path("edicao", EdicaoCarro, name="pagina_inicial"),
 ]

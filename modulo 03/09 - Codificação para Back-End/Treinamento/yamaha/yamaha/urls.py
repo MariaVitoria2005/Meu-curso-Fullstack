@@ -21,7 +21,8 @@ from django.conf.urls.static import static
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path("", include("apps.motos.urls"))
+    path("oi", include("apps.motos.urls"))
+    
 ]
 
 if settings.DEBUG:
