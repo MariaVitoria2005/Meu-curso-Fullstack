@@ -1,0 +1,46 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static "style-formularios.css" %}">
+    <title>Formulário Ordem de Serviço</title>
+</head>
+<body>
+    <a href="{% url "pg_criar_servico" %}">
+        <button type="submit">Voltar</button>
+    </a>
+
+    <h2>Formulário categoria</h2>
+
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ form_categoria.as_p}}
+        <button type="submit">Salvar</button>
+        <a href="{% url "pg_inicial" %}">
+            <button type="button">Cancelar</button>
+        </a>
+    </form>
+
+    <h2>Lista de Serviço</h2>
+
+    {% for categoria in categorias %}
+
+        <div class="card-formulario">
+            <span>{{categoria.nome}}</span>
+            <span>{{categoria.data_nascimento}}</span>
+            
+            <div class= "btns_formulario">
+                <a href="">
+                    <span>Editar categoria</span>
+                </a>
+                <a href="">
+                    <span>Excluir categoria</span>
+                </a>
+            </div>
+        </div>
+    {% endfor %}
+    
+</body>
+</html>

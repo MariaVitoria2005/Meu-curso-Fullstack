@@ -1,0 +1,10 @@
+.card-cliente{
+    border: 1px  solid #000;
+    width: fit-content;
+
+}
+.btns_clientes{
+    display: flex;
+    flex-direction: row;
+    column-gap: 20px;
+}

@@ -1,0 +1,49 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static "style-formularios.css" %}">
+    <title>Formulário Cliente</title>
+</head>
+<body>
+    <a href="{% url "pg_inicial" %}">
+        <button type="submit">Voltar</button>
+    </a>
+
+    <h2>Formulário serviço</h2>
+
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ form_servico.as_p}}
+        <button type="submit">Salvar</button>
+        <a href="{% url "pg_inicial" %}">
+            <button type="button">Cancelar</button>
+        </a>
+    </form>
+
+    <h2>Lista de Serviços</h2>
+
+    {% for servico in clientes %}
+
+        <div class="card-formulario">
+            <img src="{{servico.foto.url}}" width="150" height="auto">
+            <span>{{servico.tipi_servico}}</span>
+            <span> R$ {{servico.valor_servico}}</span>
+            <span>Empresa:</b> {{servico.empresa}}</span>
+            <span>categoria:</b> {{servico.categoria}}</span>
+            
+            <div class= "btns_formulario">
+                <a href="">
+                    <span>Editar servico</span>
+                </a>
+                <a href="">
+                    <span>Excluir servico</span>
+                </a>
+            </div>
+        </div>
+    {% endfor %}
+    
+</body>
+</html>
