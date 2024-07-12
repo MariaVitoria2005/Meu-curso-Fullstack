@@ -35,6 +35,11 @@ a{
 li{
      list-style: none;
 }
+.div_botoes{
+     display: flex;
+     flex-direction: row;
+     column-gap: 15px;
+}
  
 .card{
      border-radius: 10px;

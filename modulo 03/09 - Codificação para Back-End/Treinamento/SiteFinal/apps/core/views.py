@@ -10,7 +10,6 @@ def VerIndex(request):
         for servico in os.servico.all():
             valor_os += servico.valor_servico
         os.valor_total = valor_os
-
     return render(request, "index.html", {'ordemservicos': busca_os})
 
 def CriarCliente(request):

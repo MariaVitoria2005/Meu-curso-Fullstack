@@ -10,11 +10,23 @@
     <h4>
         CARROS ESPORTIVOS
     </h4>
+    
+    <div class="div_botoes">
+        <a href="{% url "pagina_cadastro" %}">
+            <button>CADASTROS CLIENTES</button>
+        </a>
 
-    <a href="{% url 'pagina_cadastro' %}">CADASTROS CLIENTES</a>
-    <a href="{% url 'cadastro-carro' %}">CADASTRO CARROS</a>
-    <a href="{% url 'pagina_produtos' %}">AUTOMOVEIS</a>
-    <a href="{% url 'pagina_pagamento' %}">PAGAMENTOS</a>
-  
+        <a href="{% url "cadastro-carro" %}">
+            <button>CADASTRO CARROS</button>
+        </a>
+
+        <a href="{% url "pagina_produtos" %}">
+            <button>AUTOMOVEIS</button>
+        </a>
+
+        <a href="{% url "pagina_pagamento" %}">
+            <button>PAGAMENTOS</button>
+        </a>
+    </div>
 </body>
 </html>

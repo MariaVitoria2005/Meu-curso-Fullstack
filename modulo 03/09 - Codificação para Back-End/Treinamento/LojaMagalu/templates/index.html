@@ -1,21 +1,35 @@
-<html>
-    <body>
-        <h3>
-            Lista de Vagas:
-        </h3>
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="{% static "style.css" %}">
+        <title>principal</title>
+    </head>
 
-        <a href="{% url "pg_criar_vaga" %}">
-            <button>+ Vaga</button>
+    <body>
+        <h2>
+           ServFaz
+        </h2>
+
+        <a href="{% url "pg_criar_cliente" %}">
+            <button>+</button>
         </a>
         
-        {% for vaga in vagas %}
-            <a href="{% url "pg_detalhes" vaga.id %}">
-                <div style="border: 1px solid #000; width: fit-content; color: #000; text-decoration: none;">
-                    <p>{{ vaga.titulo }}</p>
-                    <img src="{{ vaga.capa.url }}" width="250" height="auto">
-                </div>
+        <div class="div_botoes">
+            <a href="{% url "pg_criar_cliente" %}">
+                <button>Cliente</button>
             </a>
-        {% endfor %}
+
+            <a href="{% url "pg_criar_empresa" %}">
+                <button>Empresa</button>
+            </a>
+
+            <a href="pg_criar_vaga">
+                <button>Vaga</button>
+            </a>
+        </div>
         
     </body>
 </html>
