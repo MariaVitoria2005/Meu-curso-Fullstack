@@ -17,7 +17,7 @@
         {% for produto in produtos %}
 
             <div class="card">
-                <p><img src="{{produto.imagem.url}}" height=130 width="auto"></p>
+                <p><img src="{{produto.imagem.url}}" height=150 width=250></p>
                 <p>{{ produto.modelo}} </p>
                 <p>R$ {{ produto.valor}}</p>
                 <a href="{% url "detalhes_produto" produto.id %}">Detalhes</a>

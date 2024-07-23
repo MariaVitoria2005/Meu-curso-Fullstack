@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Municipio do RN</title>
+</head>
+<body>
+    <section class="container">
+        <nav>
+            <ul class="nav">
+                <li class="nav-item"><h1>Municipio do Rio Grande do Norte- IBGE</h1></li>
+            </ul>
+        </nav>
+    </section>
+
+    <div class="conteiner">
+        <table class="table">
+            <thead class="thead-dark">
+                <tr>
+                    <th scope="col">ID</th>
+                    <th scope="col">MUNICÍPIO</th>
+                    <th scope="col">MICROREGIÃO</th>
+                    <th scope="col">MESORREGIÃO</th>
+                </tr>
+            </thead>
+        </table>
+    </div>
+    <tbody>
+        {% for muncipio in  municipios %}
+            <tr>
+                <th scope="row">{{municipio.id}}</th>
+                <td>{{municipio.nome}}</td>
+                <td>{{municipio.microrregiao.nome}}</td>
+                <td>{{municipio.microrregiao.mesorregiao.nome}}</td>
+            </tr>
+        {% endfor %}
+    </tbody>
+</body>
+</html>

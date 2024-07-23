@@ -8,7 +8,6 @@ p{
 h4{
      font-size: 50px;
      font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-
 }
  
 body{
@@ -52,7 +51,6 @@ li{
      flex-direction: column;
      display: flex;
      cursor: pointer;
-    
 }
 
 .lista-carros{
