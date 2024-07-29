@@ -186,7 +186,7 @@ def ExcluirProduto(request, id_produto):
     return render(request, "conf-excluir.html", {"valor": titulo_objeto})
 
 def ibge(request):
-    api = "https://servicodados.ibge.gov.br/api/v1/localidades/estados/24/municipios"
+    api = "https://Servicodados.ibge.gov.br/api/v1/localidades/estados/24/municipios"
     requisicao = requests.get(api)
 
     try:
@@ -194,12 +194,8 @@ def ibge(request):
     except ValueError:
         print("A resposta não chegou com o formato esperado.")
 
-    dicionario = []
+    lista_municipios = []
     for municipio in municipios:
-        dicionario.append(municipio)
+        lista_municipios.append(municipio)
     
-    contexto = {
-        "municipios":dicionario
-    }
-
-    return render(request, "ibge.html", contexto)
+    return render(request, "ibge.html", {"municipios":lista_municipios, "requisicao" : requisicao})

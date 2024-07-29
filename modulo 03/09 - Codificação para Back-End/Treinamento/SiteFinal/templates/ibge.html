@@ -9,11 +9,10 @@
     <section class="container">
         <nav>
             <ul class="nav">
-                <li class="nav-item"><h1>Municipio do Rio Grande do Norte- IBGE</h1></li>
+                <li class="nav-item"><h1>Município do Rio Grande do Norte - IBGE</h1></li>
             </ul>
         </nav>
     </section>
-
     <div class="conteiner">
         <table class="table">
             <thead class="thead-dark">
@@ -24,17 +23,17 @@
                     <th scope="col">MESORREGIÃO</th>
                 </tr>
             </thead>
+            <tbody>
+                {% for municipio in  municipios %}
+                    <tr>
+                        <th scope="row">{{municipio.id}}</th>
+                        <td>{{municipio.nome}}</td>
+                        <td>{{municipio.microrregiao.nome}}</td>
+                        <td>{{municipio.microrregiao.mesorregiao.nome}}</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
         </table>
     </div>
-    <tbody>
-        {% for muncipio in  municipios %}
-            <tr>
-                <th scope="row">{{municipio.id}}</th>
-                <td>{{municipio.nome}}</td>
-                <td>{{municipio.microrregiao.nome}}</td>
-                <td>{{municipio.microrregiao.mesorregiao.nome}}</td>
-            </tr>
-        {% endfor %}
-    </tbody>
 </body>
 </html>
