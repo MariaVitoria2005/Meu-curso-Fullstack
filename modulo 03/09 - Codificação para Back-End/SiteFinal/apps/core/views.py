@@ -1,6 +1,179 @@
 from django.shortcuts import render, redirect
 from .models import *
 from .forms import *
+import requests
+from django.http import HttpResponse
+
+
+def RetornaToken(request):
+    url = 'http://127.0.0.1:9000/api/login' # Substitua pela URL da API real
+    try:
+        # Dados que você deseja enviar no corpo da solicitação POST
+        json = {
+            'email': 'LuLuzinha@gmail.com',
+            'password' : '02012022'
+        }
+        # Cabeçalhos que você deseja enviar com a solicitação
+        headers = {
+            'Content-Type': 'application/json'
+        }
+    
+        # Fazendo a solicitação POSTP
+        request = requests.post(url, json=json, headers=headers)
+        response = request.json()
+    except requests.RequestException as e:
+        return HttpResponse(f'Erro ao consumir a API: {str(e)}', status=500)
+        
+    return HttpResponse(response['token'], content_type="text/plain")
+
+
+def CriarCategoria(request):
+    url = 'http://127.0.0.1:9000/api/categorias' # Substitua pela URL da API real
+    
+    obter_token = RetornaToken(request)
+    conteudo_bytes = obter_token.content  # Obtém o conteúdo como bytes
+    token = conteudo_bytes.decode('utf-8') 
+    
+    # Cabeçalhos que você deseja enviar com a solicitação
+    headers = {
+        'Authorization': 'Bearer ' + token,
+        'Content-Type': 'application/json'
+    }
+        
+    if request.method == "GET":
+        nova_categoria = FormularioCategoria()
+    
+        try:
+            resposta = requests.get(url, headers=headers)
+            resposta.raise_for_status()  # Levanta um erro para códigos de status HTTP 4xx/5xx
+            dados = resposta.json() # Obtém os dados JSON da resposta
+        except requests.RequestException as e:
+            return HttpResponse(f'Erro ao consumir a API: {str(e)}', status=500)
+    
+        # Extraia a string desejada do JSON
+        categorias = dados['categorias']
+        return render(request, "form-categoria.html", {"form_categoria": nova_categoria, "categorias": categorias})
+    else:
+        # Dados que você deseja enviar no corpo da solicitação POST
+        json = {
+            'tipo': request.POST['tipo']
+        }
+                   
+        # Fazendo a solicitação POST
+        response = requests.post(url, json=json, headers=headers)
+    
+        # Obtendo o conteúdo da resposta
+            
+        if response.status_code in [200, 201]:
+            try:
+                response_data = response.json()
+                return redirect("pg_criar_categoria")
+            except requests.JSONDecodeError:
+                print("A resposta não é um JSON válido.")
+        else:
+            return HttpResponse('Erro ao consumir a API: ', response.status_code)
+        
+def ExcluirCategoria(request, id_categoria):
+    url = 'http://127.0.0.1:9000/api/categorias/' + str(id_categoria) # Substitua pela URL da API real
+      
+    obter_token = RetornaToken(request)
+    conteudo_bytes = obter_token.content  # Obtém o conteúdo como bytes
+    token = conteudo_bytes.decode('utf-8') 
+      
+    # Cabeçalhos que você deseja enviar com a solicitação
+    headers = {
+        'Authorization': 'Bearer ' + token,
+        'Content-Type': 'application/json'
+    }
+          
+    if request.method == "GET":             
+        # Fazendo a solicitação DELETE
+        response = requests.delete(url, headers=headers)
+      
+        # Obtendo o conteúdo da resposta
+              
+        if response.status_code in [200]:
+            try:
+                return redirect("pg_criar_categoria")
+            except requests.JSONDecodeError:
+                print("A resposta não é um JSON válido.")
+        else:
+            return HttpResponse('Erro ao consumir a API: ', response.status_code)
+    
+
+def CriarEmpresa(request):
+    url = 'http://127.0.0.1:9000/api/empresas' # Substitua pela URL da API real
+    
+    obter_token = RetornaToken(request)
+    conteudo_bytes = obter_token.content  # Obtém o conteúdo como bytes
+    token = conteudo_bytes.decode('utf-8') 
+    
+    # Cabeçalhos que você deseja enviar com a solicitação
+    headers = {
+        'Authorization': 'Bearer ' + token,
+        'Content-Type': 'application/json'
+    }
+        
+    if request.method == "GET":
+        nova_empresa = FormularioEmpresa()
+    
+        try:
+            resposta = requests.get(url, headers=headers)
+            resposta.raise_for_status()  # Levanta um erro para códigos de status HTTP 4xx/5xx
+            dados = resposta.json() # Obtém os dados JSON da resposta
+        except requests.RequestException as e:
+            return HttpResponse(f'Erro ao consumir a API: {str(e)}', status=500)
+    
+        # Extraia a string desejada do JSON
+        empresas = dados['empresas']
+        return render(request, "form-empresa.html", {"form_empresa": nova_empresa, "empresas": empresas})
+    else:
+        # Dados que você deseja enviar no corpo da solicitação POST
+        json = {
+            'razao_social': request.POST['razao_social'],
+            'cnpj': request.POST['cnpj']
+        }
+                   
+        # Fazendo a solicitação POST
+        response = requests.post(url, json=json, headers=headers)
+    
+        # Obtendo o conteúdo da resposta
+            
+        if response.status_code in [200, 201]:
+            try:
+                response_data = response.json()
+                return redirect("pg_criar_empresa")
+            except requests.JSONDecodeError:
+                print("A resposta não é um JSON válido.")
+        else:
+            return HttpResponse('Erro ao consumir a API: ', response.status_code)
+        
+def ExcluirEmpresa(request, id_empresa):
+    url = 'http://127.0.0.1:9000/api/empresas/' + str(id_empresa) # Substitua pela URL da API real
+      
+    obter_token = RetornaToken(request)
+    conteudo_bytes = obter_token.content  # Obtém o conteúdo como bytes
+    token = conteudo_bytes.decode('utf-8') 
+      
+    # Cabeçalhos que você deseja enviar com a solicitação
+    headers = {
+        'Authorization': 'Bearer ' + token,
+        'Content-Type': 'application/json'
+    }
+          
+    if request.method == "GET":             
+        # Fazendo a solicitação DELETE
+        response = requests.delete(url, headers=headers)
+      
+        # Obtendo o conteúdo da resposta
+              
+        if response.status_code in [200]:
+            try:
+                return redirect("pg_criar_empresa")
+            except requests.JSONDecodeError:
+                print("A resposta não é um JSON válido.")
+        else:
+            return HttpResponse('Erro ao consumir a API: ', response.status_code)
 
 def VerIndex(request):
     busca_os = OrdemServico.objects.all()
@@ -44,17 +217,17 @@ def ExcluirCliente(request, id_cliente):
     titulo_objeto = busca_cliente.nome
     return render(request, "conf-excluir.html", {"valor": titulo_objeto})
 
-def CriarEmpresa(request):
-    busca_empresas = Empresa.objects.all()
+# def CriarEmpresa(request):
+#     busca_empresas = Empresa.objects.all()
     
-    if request.method == "GET":
-        nova_empresa = FormularioEmpresa()
-    else:
-        empresa_preenchida = FormularioEmpresa(request.POST)
-        if empresa_preenchida.is_valid():
-            empresa_preenchida.save()
-            return redirect("pg_criar_empresa")
-    return render(request, "form-empresa.html", {"form_empresa": nova_empresa, "empresas": busca_empresas})
+#     if request.method == "GET":
+#         nova_empresa = FormularioEmpresa()
+#     else:
+#         empresa_preenchida = FormularioEmpresa(request.POST)
+#         if empresa_preenchida.is_valid():
+#             empresa_preenchida.save()
+#             return redirect("pg_criar_empresa")
+#     return render(request, "form-empresa.html", {"form_empresa": nova_empresa, "empresas": busca_empresas})
 
 def EditarEmpresa(request, id_empresa):
     busca_empresa = Empresa.objects.get(id=id_empresa)
@@ -67,15 +240,15 @@ def EditarEmpresa(request, id_empresa):
             return redirect("pg_criar_empresa")
     return render(request, "form-empresa.html", {"form_empresa": editar_empresa})
 
-def ExcluirEmpresa(request, id_empresa):
-    busca_empresa = Empresa.objects.get(id=id_empresa)
-    if request.method == "POST":
-        busca_empresa.delete()
-        return redirect("pg_criar_empresa")
-    titulo_objeto = busca_empresa.razao_social
-    return render(request, "conf-excluir.html", {"valor": titulo_objeto})
+# def ExcluirEmpresa(request, id_empresa):
+#     busca_empresa = Empresa.objects.get(id=id_empresa)
+#     if request.method == "POST":
+#         busca_empresa.delete()
+#         return redirect("pg_criar_empresa")
+#     titulo_objeto = busca_empresa.razao_social
+#     return render(request, "conf-excluir.html", {"valor": titulo_objeto})
 
-def CriarServico(request):
+'''def CriarServico(request):
     busca_servicos = Servico.objects.all()
     
     if request.method == "GET":
@@ -85,7 +258,7 @@ def CriarServico(request):
         if servico_preenchido.is_valid():
             servico_preenchido.save()
             return redirect("pg_criar_servico")
-    return render(request, "form-servico.html", {"form_servico": novo_servico, "servicos": busca_servicos})
+    return render(request, "form-servico.html", {"form_servico": novo_servico, "servicos": busca_servicos})'''
 
 def EditarServico(request, id_servico):
     busca_servico = Servico.objects.get(id=id_servico)
@@ -106,17 +279,17 @@ def ExcluirServico(request, id_servico):
     titulo_objeto = busca_servico.tipo_servico
     return render(request, "conf-excluir.html", {"valor": titulo_objeto})
 
-def CriarCategoria(request):
-    busca_categorias = Categoria.objects.all()
+# def CriarCategoria(request):
+#     busca_categorias = Categoria.objects.all()
     
-    if request.method == "GET":
-        nova_categoria = FormularioCategoria()
-    else:
-        categoria_preenchida = FormularioCategoria(request.POST)
-        if categoria_preenchida.is_valid():
-            categoria_preenchida.save()
-            return redirect("pg_criar_categoria")
-    return render(request, "form-categoria.html", {"form_categoria": nova_categoria, "categorias": busca_categorias})
+#     if request.method == "GET":
+#         nova_categoria = FormularioCategoria()
+#     else:
+#         categoria_preenchida = FormularioCategoria(request.POST)
+#         if categoria_preenchida.is_valid():
+#             categoria_preenchida.save()
+#             return redirect("pg_criar_categoria")
+#     return render(request, "form-categoria.html", {"form_categoria": nova_categoria, "categorias": busca_categorias})
 
 def EditarCategoria(request, id_categoria):
     busca_categoria = Categoria.objects.get(id=id_categoria)
@@ -129,13 +302,13 @@ def EditarCategoria(request, id_categoria):
             return redirect("pg_criar_categoria")
     return render(request, "form-categoria.html", {"form_categoria": editar_categoria})
 
-def ExcluirCategoria(request, id_categoria):
-    busca_categoria = Categoria.objects.get(id=id_categoria)
-    if request.method == "POST":
-        busca_categoria.delete()
-        return redirect("pg_criar_categoria")
-    titulo_objeto = busca_categoria.tipo
-    return render(request, "conf-excluir.html", {"valor": titulo_objeto})
+# def ExcluirCategoria(request, id_categoria):
+#     busca_categoria = Categoria.objects.get(id=id_categoria)
+#     if request.method == "POST":
+#         busca_categoria.delete()
+#         return redirect("pg_criar_categoria")
+#     titulo_objeto = busca_categoria.tipo
+#     return render(request, "conf-excluir.html", {"valor": titulo_objeto})
 
 def CriarOrdemServico(request):
     if request.method == "GET":
