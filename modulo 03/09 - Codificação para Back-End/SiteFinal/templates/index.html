@@ -15,21 +15,26 @@
                 <button>Ordem de Serviço</button>
             </a>
 
-            <a href="{% url "pg_criar_cliente" %}">
+            <a href="{% url "pg_criar_cliente" %}">  
                 <button>Cliente</button>
             </a>
 
-            <a href="{% url "pg_criar_empresa" %}">
+            <a href="{% url "pg_criar_empresa" %}">  
                 <button>Empresa</button>
             </a>
 
-            <a href="{% url "pg_criar_servico" %}">
+            <a href="{% url "pg_criar_servico" %}">  
                 <button>Serviço</button>
             </a>
 
-            <a href="{% url "pg_criar_categoria" %}">
+            <a href="{% url "pg_criar_produto" %}">   
+                <button>Produto</button>
+            </a>
+
+            <a href="{% url "pg_criar_categoria" %}">   
                 <button>Categoria</button>
             </a>
+
         </div>
         
         {% for os in ordemservicos %}
