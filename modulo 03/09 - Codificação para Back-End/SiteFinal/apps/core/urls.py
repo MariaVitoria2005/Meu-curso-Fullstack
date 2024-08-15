@@ -12,11 +12,11 @@ urlpatterns = [
     path("excluir-empresa/<int:id_empresa>", ExcluirEmpresa, name="pg_excluir_empresa"),
 
     path("criar-produto", CriarProduto, name="pg_criar_produto"),
-    #path("editar-produto/<int:id_produto>", EditarProduto, name="pg_editar_produto"),
+    path("editar-produto/<int:id_produto>", EditarProduto, name="pg_editar_produto"),
     path("excluir-produto/<int:id_produto>", ExcluirProduto, name="pg_excluir_produto"),
 
     path("criar-servico", CriarServico, name="pg_criar_servico"),
-    #path("editar-servico/<int:id_servico>", EditarServico, name="pg_editar_servico"),
+    path("editar-servico/<int:id_servico>", EditarServico, name="pg_editar_servico"),
     path("excluir-servico/<int:id_servico>", ExcluirServico, name="pg_excluir_servico"),
 
     path("criar-categoria", CriarCategoria, name="pg_criar_categoria"),

@@ -32,9 +32,9 @@
                 <span>{{ produto.descricao }}</span>
 
                 <div class="btns_formulario">
-                    {% comment %} <a href="{% url "pg_editar_produto" produto.id %}">
+                    <a href="{% url "pg_editar_produto" produto.id %}">
                         <span>Editar Produto</span>
-                    </a> {% endcomment %}
+                    </a>  
                     <a href="{% url "pg_excluir_produto" produto.id %}"onclick="confirm('Deseja realmete excluir?')">
                         <span>Excluir Produto</span>
                     </a>
