@@ -1,12 +1,13 @@
-{% load static %}
-<!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+{% extends "base.html" %} 
+{% load static %}
+
+{% block  titulio %}
+        <script src="{% static 'js/validacoes_ordemservico.js'%}"> </script>
         <title>Formulário Ordem de Serviço</title>
-    </head>
-    <body>
+{% endblock  %}
+
+{% block conteudo %}
         <a href="{% url "pg_inicial" %}">
             <button>Voltar</button>
         </a>
@@ -20,5 +21,4 @@
                 <button type="button">Cancelar</button>
             </a>
         </form>
-    </body>
-</html>
+{% endblock %}

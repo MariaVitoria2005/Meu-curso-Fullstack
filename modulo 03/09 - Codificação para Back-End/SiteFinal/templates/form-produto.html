@@ -1,13 +1,14 @@
-{% load static %}
-<!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+{% extends "base.html" %} 
+{% load static %}
+
+{% block  titulio %}
         <link rel="stylesheet" href="{% static "style-formularios.css" %}">
+        <script src="{% static 'js/validacoes_produto.js'%}"> </script>
         <title>Formulário Produto</title>
-    </head>
-    <body>
+{% endblock  %}
+
+{% block conteudo %}
         <a href="{% url "pg_inicial" %}">
             <button>Voltar</button>
         </a>
@@ -41,5 +42,4 @@
                 </div>
             </div>
         {% endfor %}
-    </body>
-</html>
+{% endblock %}

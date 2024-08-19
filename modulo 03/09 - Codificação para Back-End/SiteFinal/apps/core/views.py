@@ -769,7 +769,6 @@ def ExcluirOrdemServico(request, id_ordemservico):
             return HttpResponse('Erro ao consumir a API: ', response.status_code)
 
 
-
 def VerIndex(request):
     busca_os = OrdemServico.objects.all()
 

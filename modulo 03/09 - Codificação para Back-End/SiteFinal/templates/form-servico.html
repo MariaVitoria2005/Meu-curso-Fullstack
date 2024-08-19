@@ -1,13 +1,14 @@
-{% load static %}
-<!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+{% extends "base.html" %} 
+{% load static %}
+
+{% block  titulio %}
         <link rel="stylesheet" href="{% static "style-formularios.css" %}">
+        <script src="{% static 'js/validacoes_servico.js'%}"> </script>
         <title>Formulário Serviço</title>
-    </head>
-    <body>
+{% endblock  %}
+
+{% block conteudo %}
         <a href="{% url "pg_inicial" %}">
             <button>Voltar</button>
         </a>
@@ -22,13 +23,13 @@
             {% csrf_token %}
             <p>
                 <label for="tipo">Tipo servico:</label>
-                <input type="text" name="tipo" maxlength="100" required="" id="tipo">
+                <input type="text" name="tipo" maxlength="100"  id="tipo">
             </p>
                     
                     
             <p>
                 <label for="valor">Valor servico:</label>
-                <input type="number" name="valor" step="0.01" required="" id="valor">
+                <input type="number" name="valor" step="0.01" id="valor">
             </p>
                     
                     
@@ -78,6 +79,4 @@
                 </div>
             </div>
         {% endfor %}
-
-    </body>
-</html>
+{% endblock %}
