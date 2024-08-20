@@ -17,29 +17,55 @@
         <form method="post" enctype="multipart/form-data">
             {% csrf_token %}
             {{ form_produto.as_p }}
-            <button type="submit">Salvar</button>
+            <button type="submit" class="btn btn-primary">Salvar</button>
             <a href="{% url "pg_inicial" %}">
-                <button type="button">Cancelar</button>
+                <button type="button" class="btn btn-danger">Cancelar</button>
             </a>
         </form>
 
+        <div class="input-group mb-3">
+            <div class="input-group-prepend">
+              <span class="input-group-text">R$</span>
+            </div>
+            <input type="text" class="form-control" aria-label="Quantia">
+            <div class="input-group-append">
+              <span class="input-group-text">.00</span>
+            </div>
+          </div>
+
         <h2>Lista de produtos</h2>
 
-        {% for produto in produtos %}
-            <div class="card-formulario">
-                
-                <span>{{ produto.nome }}</span>
-                <span>{{ produto.valor }}</span>
-                <span>{{ produto.descricao }}</span>
+        <table class="table">
+            <thead>
+              <tr class="alert alert-dark">
+                <th scope="col">ID</th>
+                <th scope="col">NOME</th>
+                <th scope="col">VALOR</th>
+                <th scope="col">DESCRIÇÃO</th>
+                <th scope="col">OPÇÃO</th>
+              </tr>
+            </thead>
 
-                <div class="btns_formulario">
-                    <a href="{% url "pg_editar_produto" produto.id %}">
-                        <span>Editar Produto</span>
-                    </a>  
-                    <a href="{% url "pg_excluir_produto" produto.id %}"onclick="confirm('Deseja realmete excluir?')">
-                        <span>Excluir Produto</span>
-                    </a>
-                </div>
-            </div>
-        {% endfor %}
+            <tbody >
+                {% for produto in produtos %}
+                    <tr class="alert alert-secondary">
+                        <th scope="row">{{ produto.id }}</th>
+                        <td>{{ produto.nome }}</td>
+                        <td>{{ produto.valor }}</td>
+                        <td>{{ produto.descricao }}</td>
+                        <td>
+                            <div class="btns_formulario" >
+                                <a href="{% url "pg_editar_produto" produto.id %}">
+                                    <span class="btn btn-primary">Editar produto</span>
+                                </a>
+                                <a href="{% url "pg_excluir_produto" produto.id %}" onclick="confirm('Deseja realmete excluir?')">
+                                    <span class="btn btn-danger">Excluir produto</span>
+                                </a>
+                            </div>
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>  
+
 {% endblock %}

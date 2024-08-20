@@ -3,6 +3,7 @@ from .models import *
 from .forms import *
 import requests
 from django.http import HttpResponse
+import datetime
 
 def RetornaToken(request):
     url = 'http://127.0.0.1:9000/api/login' # Substitua pela URL da API real
@@ -55,8 +56,8 @@ def CriarCliente(request):
         # Dados que você deseja enviar no corpo da solicitação POST
         json = {
             'nome': request.POST['nome'],
-            'data_nascimento': request.POST['data_nascimento'],
-            'foto': request.POST['foto'],
+            'data_nascimento': '2023-05-12',
+            'foto': 'teste.jpg',
         }
                    
         # Fazendo a solicitação POST
@@ -71,7 +72,7 @@ def CriarCliente(request):
             except requests.JSONDecodeError:
                 print("A resposta não é um JSON válido.")
         else:
-            return HttpResponse('Erro ao consumir a API: ', response.status_code)
+            return HttpResponse(response)
 
 def EditarCliente(request, id_cliente):
     url_editar_cliente = 'http://127.0.0.1:9000/api/clientes/' + str(id_cliente) # Substitua pela URL da API real

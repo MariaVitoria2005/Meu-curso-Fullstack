@@ -53,16 +53,51 @@
                     {% endfor %}
                 </select>
             </p>
-                <button type="submit">Salvar</button>
+                <button type="submit" class="btn btn-primary">Salvar</button>
                 <a href="{% url "pg_inicial" %}">
-                    <button type="button">Cancelar</button>
+                    <button type="button" class="btn btn-danger">Cancelar</button>
                 </a>
         </form>
 
         <h2>Lista de Serviços</h2>
 
-        {% for servico in servicos %}
-            <div class="card-formulario">
+        <table class="table">
+            <thead>
+              <tr>
+                <th scope="col">ID</th>
+                <th scope="col">TIPO</th>
+                <th scope="col">VALOR</th>
+                <th scope="col">EMPRESA</th>
+                <th scope="col">RAZAO SOCIAL</th>
+                <th scope="col">OPÇÕES</th>
+                
+              </tr>
+            </thead>
+            <tbody>
+                {% for servico in servicos %}
+                    <tr>
+                        <th scope="row">{{ servico.id }}</th>
+                        <td>{{ servico.tipo }}</td>
+                        <td>{{ servico.valor }}</td>
+                        <td>{{ servico.empresa.razao_social }}</td>
+                        <td>{{ servico.categoria.tipo }}</td>
+                        <td>
+                            <div class="btns_formulario">
+                                <a href="{% url "pg_editar_servico" servico.id %}">
+                                    <span>Editar servico</span>
+                                </a>
+                                <a href="{% url "pg_excluir_servico" servico.id %}" onclick="confirm('Deseja realmete excluir?')">
+                                    <span>Excluir servico</span>
+                                </a>
+                            </div>
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>  
+
+        
+            {% comment %} <div class="card-formulario">
 
                 <span>{{ servico.tipo}}</span>
                 <span>R$ {{ servico.valor}}</span>
@@ -70,13 +105,12 @@
                 <span><b>Categoria:</b> {{ servico.categoria.tipo }}</span>
 
                 <div class="btns_formulario">
-                     {% comment %} <a href="{% url "pg_editar_servico" servico.id %}">
+                    <a href="{% url "pg_editar_servico" servico.id %}">
                         <span>Editar Serviço</span>
-                    </a> {% endcomment %}
+                    </a> 
                     <a href="{% url "pg_excluir_servico" servico.id %}"onclick="confirm('Deseja realmete excluir?')">
                         <span>Excluir Serviço</span>
                     </a>
                 </div>
-            </div>
-        {% endfor %}
+            </div> {% endcomment %}
 {% endblock %}
