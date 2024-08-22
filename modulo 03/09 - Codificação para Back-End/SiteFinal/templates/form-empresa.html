@@ -23,17 +23,17 @@
             <label for="id_empresa">cnpj:</label>
             <input type="text" name="cnpj" maxlength="100"  id="cnpj" value="{{ empresa.cnpj}}">  
             </p>
-            <button type="submit" class="btn btn-primary">Salvar</button>
+            <button type="submit" class="btn btn-outline-primary">Salvar</button>
             <a href="{% url "pg_criar_empresa" %}">
-                <button type="button" class="btn btn-danger">Cancelar</button>
+                <button type="button" class="btn btn-outline-danger">Cancelar</button>
             </a>
         </form>
 
         <h2>Lista de Empresas</h2>
 
-        <table class="table">
+        <table class="table table-bordered">
             <thead>
-              <tr>
+              <tr class="alert alert-dark">
                 <th scope="col">ID</th>
                 <th scope="col">RAZAO SOCIAL</th>
                 <th scope="col">CNPJ</th>
@@ -42,17 +42,24 @@
             </thead>
             <tbody>
                 {% for empresa in empresas %}
-                    <tr>
+                    <tr class="">
                         <th scope="row">{{ empresa.id }}</th>
                         <td>{{ empresa.razao_social }}</td>
                         <td>{{ empresa.cnpj }}</td>
                         <td>
                             <div class="btns_formulario">
+                                <div>
+                                    <img src="https://img.icons8.com/?size=100&id=21076&format=png&color=000000" alt="" width="35" height="35"> </img>
+                                </div>
                                 <a href="{% url "pg_editar_empresa" empresa.id %}">
-                                    <span>Editar Empresa</span>
+                                    <span class="btn btn-outline-primary">Editar Empresa</span>
                                 </a>
+
+                                <div>
+                                    <img src="https://img.icons8.com/?size=100&id=fYgQxDaH069W&format=png&color=000000" alt="" width="35" height="35"> </img>
+                                </div>
                                 <a href="{% url "pg_excluir_empresa" empresa.id %}" onclick="confirm('Deseja realmete excluir?')">
-                                    <span>Excluir Empresa</span>
+                                    <span class="btn btn-outline-danger">Excluir Empresa</span>
                                 </a>
                             </div>
                         </td>

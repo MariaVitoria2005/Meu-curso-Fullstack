@@ -53,18 +53,18 @@
                     {% endfor %}
                 </select>
             </p>
-                <button type="submit" class="btn btn-primary">Salvar</button>
+                <button type="submit" class="btn btn-outline-primary">Salvar</button>
                 <a href="{% url "pg_inicial" %}">
-                    <button type="button" class="btn btn-danger">Cancelar</button>
+                    <button type="button" class="btn btn-outline-danger">Cancelar</button>
                 </a>
         </form>
 
         <h2>Lista de Serviços</h2>
 
-        <table class="table">
+        <table class=" table table-bordered">
             <thead>
-              <tr>
-                <th scope="col">ID</th>
+              <tr class="alert alert-dark">
+                <th scope="col" >ID</th>
                 <th scope="col">TIPO</th>
                 <th scope="col">VALOR</th>
                 <th scope="col">EMPRESA</th>
@@ -75,19 +75,26 @@
             </thead>
             <tbody>
                 {% for servico in servicos %}
-                    <tr>
-                        <th scope="row">{{ servico.id }}</th>
+                    <tr class="">
+                        <th scope="row" >{{ servico.id }}</th>
                         <td>{{ servico.tipo }}</td>
                         <td>{{ servico.valor }}</td>
                         <td>{{ servico.empresa.razao_social }}</td>
                         <td>{{ servico.categoria.tipo }}</td>
                         <td>
                             <div class="btns_formulario">
+                                <div>
+                                    <img src="https://img.icons8.com/?size=100&id=21076&format=png&color=000000"alt="" width="35" height="35"></img>
+                                </div>
                                 <a href="{% url "pg_editar_servico" servico.id %}">
-                                    <span>Editar servico</span>
+                                    <span class="btn btn-outline-primary">Editar servico</span>
                                 </a>
+
+                                <div>
+                                    <img src="https://img.icons8.com/?size=100&id=fYgQxDaH069W&format=png&color=000000" alt="" width="35" height="35"></img>
+                                </div>
                                 <a href="{% url "pg_excluir_servico" servico.id %}" onclick="confirm('Deseja realmete excluir?')">
-                                    <span>Excluir servico</span>
+                                    <span class="btn btn-outline-danger">Excluir servico</span>
                                 </a>
                             </div>
                         </td>

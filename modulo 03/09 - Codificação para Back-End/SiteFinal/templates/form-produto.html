@@ -17,9 +17,9 @@
         <form method="post" enctype="multipart/form-data">
             {% csrf_token %}
             {{ form_produto.as_p }}
-            <button type="submit" class="btn btn-primary">Salvar</button>
+            <button type="submit" class="btn btn-outline-primary">Salvar</button>
             <a href="{% url "pg_inicial" %}">
-                <button type="button" class="btn btn-danger">Cancelar</button>
+                <button type="button" class="btn btn-outline-danger">Cancelar</button>
             </a>
         </form>
 
@@ -35,7 +35,7 @@
 
         <h2>Lista de produtos</h2>
 
-        <table class="table">
+        <table class="table table-bordered">
             <thead>
               <tr class="alert alert-dark">
                 <th scope="col">ID</th>
@@ -48,18 +48,25 @@
 
             <tbody >
                 {% for produto in produtos %}
-                    <tr class="alert alert-secondary">
+                    <tr class="">
                         <th scope="row">{{ produto.id }}</th>
                         <td>{{ produto.nome }}</td>
                         <td>{{ produto.valor }}</td>
                         <td>{{ produto.descricao }}</td>
                         <td>
                             <div class="btns_formulario" >
+                                <div>
+                                    <img src="https://img.icons8.com/?size=100&id=21076&format=png&color=000000" alt="" width="35" height="35"> </img>
+                                </div>
                                 <a href="{% url "pg_editar_produto" produto.id %}">
-                                    <span class="btn btn-primary">Editar produto</span>
+                                    <span class="btn btn-outline-primary">Editar produto</span>
                                 </a>
+
+                                <div>
+                                    <img src="https://img.icons8.com/?size=100&id=fYgQxDaH069W&format=png&color=000000" alt="" width="35" height="35"> </img>
+                                </div>
                                 <a href="{% url "pg_excluir_produto" produto.id %}" onclick="confirm('Deseja realmete excluir?')">
-                                    <span class="btn btn-danger">Excluir produto</span>
+                                    <span class="btn btn-outline-danger">Excluir produto</span>
                                 </a>
                             </div>
                         </td>

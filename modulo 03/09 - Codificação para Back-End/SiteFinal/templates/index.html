@@ -11,9 +11,9 @@
     <body>
         <h2>Elabore Ordens de Serviços</h2>
 
-        <div class="div_botoes">
+        <div class="div_botoes" >
             <a href="{% url "pg_criar_ordemservico" %}">
-                <button>Ordem de Serviço</button>
+                <button >Ordem de Serviço</button>
             </a>
 
             <a href="{% url "pg_criar_cliente" %}">  
@@ -35,7 +35,6 @@
             <a href="{% url "pg_criar_categoria" %}">   
                 <button>Categoria</button>
             </a>
-
         </div>
         
         {% for os in ordemservicos %}
