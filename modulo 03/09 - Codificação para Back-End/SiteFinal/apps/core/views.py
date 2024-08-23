@@ -305,7 +305,7 @@ def CriarServico(request):
             return HttpResponse(f'Erro ao consumir a API: {str(e)}', status=500)
     
         # Extraia a string desejada do JSON
-        servicos = dados['servico']
+        servicos = dados['servicos']
         return render(request, "form-servico.html", {"categorias": categorias,"empresas": empresas, "servicos": servicos})
     else:
        # Dados que você deseja enviar no corpo da solicitação POST
@@ -333,6 +333,8 @@ def CriarServico(request):
 def EditarServico(request, id_servico):
     url_editar_servico = 'http://127.0.0.1:9000/api/servicos/' + str(id_servico) # Substitua pela URL da API real
     url_listar_servico = 'http://127.0.0.1:9000/api/servicos' # Substitua pela URL da API real
+    url_categorias = 'http://127.0.0.1:9000/api/categorias'
+    url_empresas = 'http://127.0.0.1:9000/api/empresas'
 
     obter_token = RetornaToken(request)
     conteudo_bytes = obter_token.content  # Obtém o conteúdo como bytes
@@ -349,13 +351,25 @@ def EditarServico(request, id_servico):
     dados = resposta.json()
     servico = dados['servico']
 
-    resposta_servicos = requests.get(url_listar_servico, headers=headers)
-    resposta_servicos.raise_for_status()  # Levanta um erro para códigos de status HTTP 4xx/5xx
-    dados_servicos = resposta_servicos.json() # Obtém os dados JSON da resposta
+    resposta_servico = requests.get(url_listar_servico, headers=headers)
+    resposta_servico.raise_for_status()  # Levanta um erro para códigos de status HTTP 4xx/5xx
+    dados_servicos = resposta_servico.json() # Obtém os dados JSON da resposta
     servicos = dados_servicos['servicos']
 
+
+
+    resposta_categorias = requests.get(url_categorias, headers=headers)
+    resposta_categorias.raise_for_status()  # Levanta um erro para códigos de status HTTP 4xx/5xx
+    dados_categorias = resposta_categorias.json() # Obtém os dados JSON da resposta
+    categorias = dados_categorias['categorias']
+
+    resposta_empresas  = requests.get(url_empresas , headers=headers)
+    resposta_empresas .raise_for_status()  # Levanta um erro para códigos de status HTTP 4xx/5xx
+    dados_empresas  = resposta_empresas .json() # Obtém os dados JSON da resposta
+    empresas  = dados_empresas ['empresas']
+
     if request.method == "GET":
-        return render(request, "form-servico.html", {"servico": servico, 'servicos' : servicos}) 
+        return render(request, "form-servico.html", {'servico': servico, 'categorias':categorias, 'empresas':empresas,  'servicos' : servicos}) 
     else:
         # Dados que você deseja enviar no corpo da solicitação POST
         json = {
@@ -376,7 +390,7 @@ def EditarServico(request, id_servico):
             except requests.JSONDecodeError:
                 print("A resposta não é um JSON válido.")
         else:
-            return render(request, "form-servico.html", {"servico": servico, 'servicos' : servicos})         
+            return render(request, "form-servico.html", {"servico": servico,  'categorias' : categorias, 'empresas':empresas,  'servicos' : servicos})         
 
 def ExcluirServico(request, id_servico):
     url = 'http://127.0.0.1:9000/api/servicos/' + str(id_servico) # Substitua pela URL da API real

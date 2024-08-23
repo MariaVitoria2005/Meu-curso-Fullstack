@@ -1,4 +1,3 @@
-<html lang="en">
 {% extends "base.html" %} 
 {% load static %}
 
@@ -23,22 +22,22 @@
             {% csrf_token %}
             <p>
                 <label for="tipo">Tipo servico:</label>
-                <input type="text" name="tipo" maxlength="100"  id="tipo">
+                <input type = "text" name = "tipo" maxlength = "100"  id = "tipo" value ="{{servico.tipo}}">
             </p>
                     
                     
             <p>
                 <label for="valor">Valor servico:</label>
-                <input type="number" name="valor" step="0.01" id="valor">
+                <input type="number" name="valor" step="0.01" id="valor" value= "{{servico.valor}}">
             </p>
                     
                     
             <p>
                 <label for="id_empresa">Empresa:</label>
-                <select name="empresa_id" required="" id="empresa_id">
-                    <option value="" selected=""></option>
+                <select name="empresa_id" id="empresa_id">
+                    <option value="{{ servico.empresa_id }}" selected="{{ servico.empresa_id }}">{{ servico.empresa.razao_social }}</option>
                     {% for empresa in empresas %}
-                        <option value="{{ empresa.id }}">{{ empresa.razao_social }}</option>
+                        <option value="{{ empresa.id }}">{{ empresa.razao_social }} </option>
                     {% endfor %}
                 </select>
             </p>
@@ -46,8 +45,8 @@
                     
             <p>
                 <label for="id_categoria">Categoria:</label>
-                <select name="categoria_id" required="" id="categoria_id">
-                    <option value="" selected=""></option>
+                <select name="categoria_id" id="categoria_id">
+                    <option value="{{ servico.categoria_id }}" selected="{{ servico.categoria_id }}">{{ servico.categoria.tipo }}</option>
                     {% for categoria in categorias %}
                         <option value="{{ categoria.id }}">{{ categoria.tipo }}</option>
                     {% endfor %}
@@ -87,14 +86,14 @@
                                     <img src="https://img.icons8.com/?size=100&id=21076&format=png&color=000000"alt="" width="35" height="35"></img>
                                 </div>
                                 <a href="{% url "pg_editar_servico" servico.id %}">
-                                    <span class="btn btn-outline-primary">Editar servico</span>
+                                    <span class="btn btn-outline-primary">Editar serviço</span>
                                 </a>
 
                                 <div>
                                     <img src="https://img.icons8.com/?size=100&id=fYgQxDaH069W&format=png&color=000000" alt="" width="35" height="35"></img>
                                 </div>
-                                <a href="{% url "pg_excluir_servico" servico.id %}" onclick="confirm('Deseja realmete excluir?')">
-                                    <span class="btn btn-outline-danger">Excluir servico</span>
+                                <a href="{% url "pg_excluir_servico" servico.id %}" onclick="return confirm('Deseja realmete excluir?')">
+                                    <span class="btn btn-outline-danger">Excluir serviço</span>
                                 </a>
                             </div>
                         </td>
