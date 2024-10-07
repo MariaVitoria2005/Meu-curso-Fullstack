@@ -7,34 +7,39 @@
     <title>Formulário Categoria</title>
 {% endblock  %}
 
-{% block conteudo %} 
+{% block conteudo %}
+<div class="container"> 
     <a href="{% url "pg_criar_servico" %}">
         <button>Voltar</button>
     </a>
-    <h3>Formulário Categoria</h3>
+
+    <h3 class="text-success">Formulário Categoria:</h3>
 
     <form method="post" id="form_categoria">
         {% csrf_token %}
-        <p>
-            <label for="id_tipo" >Tipo:</label>
-            <input type="text" name="tipo" maxlength="100"  id="tipo" value="{{ categoria.tipo }}">  
-        </p>
-        <button type="submit" class="btn btn-outline-primary">Salvar</button>
-        <a href="{% url "pg_criar_servico" %}">
-            <button type="button" class="btn btn-outline-danger">Cancelar</button>
-        </a>
+        <div class="container"> 
+            <p>
+                <label for="id_tipo" >Tipo:</label>
+                <input type="text" name="tipo" maxlength="100"  id="tipo" value="{{ categoria.tipo }}">  
+            </p>
+            <button type="submit" class="btn btn-outline-primary">Salvar</button>
+            <a href="{% url "pg_criar_servico" %}">
+                <button type="button" class="btn btn-outline-danger">Cancelar</button>
+            </a>
+        </div>
     </form>
 
-    <h2 >Lista de Categorias</h2>
-        
+    <h2 >Lista de Categorias:</h2>
+
     <table class="table table-bordered">
         <thead >
             <tr class="alert alert-dark">
                 <th scope="col">ID</th>  
                 <th scope="col">TIPO</th>
                 <th scope="col">OPÇÕES</th>
-            </tr>
+            </tr>  
         </thead>
+      
         <tbody >
             {% for categoria in categorias %}
                 <tr class="" >
@@ -52,7 +57,7 @@
                             <div>
                                 <img src="https://img.icons8.com/?size=100&id=fYgQxDaH069W&format=png&color=000000" alt="" width="35" height="35"> </img>
                             </div>
-                            <a href="{% url "pg_excluir_categoria" categoria.id %}" onclick="confirm('Deseja realmete excluir?')">
+                            <a href="{% url "pg_excluir_categoria" categoria.id %}" onclick="return confirm('Deseja realmete excluir?')">
                                 <span class="btn btn-outline-danger">Excluir Categoria</span>
                             </a>
                         </div>
@@ -60,5 +65,6 @@
                 </tr>
             {% endfor %}
         </tbody>
-    </table>     
+    </table> 
+</div>    
 {% endblock %}

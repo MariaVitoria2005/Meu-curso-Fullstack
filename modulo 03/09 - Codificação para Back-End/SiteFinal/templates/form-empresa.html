@@ -2,31 +2,39 @@
 {% extends "base.html" %} 
 {% load static %}
 
-{% block  titulio %}
-        
+{% block  titulio %}       
         <title>Formulário Empresa</title>
 {% endblock  %}
 
 {% block conteudo %}
+<div class="container">
         <a href="{% url "pg_inicial" %}">
             <button>Voltar</button>
         </a>
-        <h2>Formulário Empresa</h2>
+        <h2 class="text-success">Formulário Empresa:</h2>
 
         <form method="post" id="form_empresa">
             {% csrf_token %}
+            <div class="container">
             <p>
-            <label for="id_empresa">Razao Social:</label>
-            <input type="text" name="razao_social" maxlength="100"  id="razao_social" value="{{ empresa.razao_social}}">  
+                <label for="id_empresa">Razao Social:</label>
+                <input type="text" name="razao_social" maxlength="100"  id="razao_social" value="{{ empresa.razao_social}}">  
             </p>
             <p>
-            <label for="id_empresa">cnpj:</label>
-            <input type="text" name="cnpj" maxlength="100"  id="cnpj" value="{{ empresa.cnpj}}">  
+                <label for="id_empresa">cnpj:</label>
+                <input type="text" name="cnpj" maxlength="100"  id="cnpj" value="{{ empresa.cnpj}}">  
             </p>
-            <button type="submit" class="btn btn-outline-primary">Salvar</button>
+
+            <p>
+                <label for="id_empresa">Endereço:</label>
+                <input type="text" name="endereco" maxlength="100"  id="endereco" value="{{ empresa.endereco}}">  
+            </p>
+
+                <button type="submit" class="btn btn-outline-primary">Salvar</button>
             <a href="{% url "pg_criar_empresa" %}">
                 <button type="button" class="btn btn-outline-danger">Cancelar</button>
             </a>
+            </div>
         </form>
 
         <h2>Lista de Empresas</h2>
@@ -37,6 +45,7 @@
                 <th scope="col">ID</th>
                 <th scope="col">RAZAO SOCIAL</th>
                 <th scope="col">CNPJ</th>
+                <th scope="col">ENDEREÇO</th>
                 <th scope="col">OPÇÕES</th>
               </tr>
             </thead>
@@ -46,6 +55,7 @@
                         <th scope="row">{{ empresa.id }}</th>
                         <td>{{ empresa.razao_social }}</td>
                         <td>{{ empresa.cnpj }}</td>
+                        <td>{{ empresa.endereco}}</td>
                         <td>
                             <div class="btns_formulario">
                                 <div>
@@ -58,7 +68,7 @@
                                 <div>
                                     <img src="https://img.icons8.com/?size=100&id=fYgQxDaH069W&format=png&color=000000" alt="" width="35" height="35"> </img>
                                 </div>
-                                <a href="{% url "pg_excluir_empresa" empresa.id %}" onclick="confirm('Deseja realmete excluir?')">
+                                <a href="{% url "pg_excluir_empresa" empresa.id %}" onclick="return confirm('Deseja realmete excluir?')">
                                     <span class="btn btn-outline-danger">Excluir Empresa</span>
                                 </a>
                             </div>
@@ -67,7 +77,6 @@
                 {% endfor %}
             </tbody>
         </table>   
-
-        <script src="{% static 'js/validacoes_empresa.js'%}"> </script>
-        
+    <script src="{% static 'js/validacoes_empresa.js'%}"> </script>
+</div>       
 {% endblock %}

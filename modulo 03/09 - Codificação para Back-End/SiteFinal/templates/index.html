@@ -1,17 +1,21 @@
+<html lang="en">
+{% extends "base.html" %} 
 {% load static %}
 <!DOCTYPE html>
-<html lang="en">
+{% block  titulio %}
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" href="{% static "style.css" %}">
-        <script src="https://code.jquery.com/jquery-3.6.0.min.js"> </script>
         <title>Elabore Ordens de Serviços</title>
     </head>
-    <body>
-        <h2>Elabore Ordens de Serviços</h2>
+{% endblock  %}
 
-        <div class="div_botoes" >
+{% block conteudo %}
+    <body>
+        <h2 class="text-info">ELABORE ORDENS DE SERVIÇOS</h2>
+
+        {% comment %} <div class="div_botoes" >
             <a href="{% url "pg_criar_ordemservico" %}">
                 <button >Ordem de Serviço</button>
             </a>
@@ -35,7 +39,42 @@
             <a href="{% url "pg_criar_categoria" %}">   
                 <button>Categoria</button>
             </a>
-        </div>
+        </div> {% endcomment %}
+
+        <ul class="nav nav-tabs justify-content-center">
+            <li class="nav-item">
+                <a class="nav-link active" href="{% url "pg_criar_ordemservico" %}">Ordem de Serviço</a>
+            </li>
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Dropdown</a>
+                <div class="dropdown-menu">
+                  <a class="dropdown-item" href="#">Ação</a>
+                  <a class="dropdown-item" href="#">Outra ação</a>
+                  <a class="dropdown-item" href="#">Algo mais aqui</a>
+                  <div class="dropdown-divider"></div>
+                  <a class="dropdown-item" href="#">Link isolado</a>
+                </div>
+              </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{% url "pg_criar_cliente" %}">Cliente</a>
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link" href="{% url "pg_criar_empresa" %}">Empresa</a>
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link" href="{% url "pg_criar_servico" %}">Serviço</a>
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link" href="{% url "pg_criar_produto" %}">Produto</a>
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link" href="{% url "pg_criar_categoria" %}">Categoria</a>
+            </li>
+        </ul>
         
         {% for os in ordemservicos %}
             <div class="card">
@@ -56,6 +95,6 @@
                 </a>
             </div>
         {% endfor %}
-
     </body>
 </html>
+{% endblock %}

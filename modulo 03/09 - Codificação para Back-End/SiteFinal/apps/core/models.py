@@ -26,6 +26,7 @@ class Servico(models.Model):
     valor_servico = models.DecimalField(decimal_places=2, max_digits=10)
     empresa = models.ForeignKey(Empresa, on_delete=models.CASCADE)
     categoria = models.ForeignKey(Categoria, on_delete=models.DO_NOTHING)
+    
 
     def __str__(self):
         return self.tipo_servico
@@ -34,7 +35,8 @@ class OrdemServico(models.Model):
     cliente = models.ForeignKey(Cliente, on_delete=models.CASCADE)
     servico = models.ManyToManyField(Servico)
     data_servico = models.DateTimeField(auto_now_add=True)
-
+    status = models.BooleanField(blank=True,null=True)
+    
     def __str__(self):
         return "OS: " + self.id + " | " + self.cliente.nome
 

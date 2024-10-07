@@ -8,29 +8,53 @@
 {% endblock  %}
 
 {% block conteudo %}
+<div class="container"> 
     <a href="{% url "pg_inicial" %}">
         <button>Voltar</button>
     </a>
 
-    <h2>Formulário Cliente</h2>
+    <h2 class="text-success">Formulário Cliente:</h2>
 
-    <form method="post" enctype="multipart/form-data" id="form_cliente">
+    {% comment %} <form method="post" enctype="multipart/form-data" id="form_cliente">
+        {% csrf_token %}   
+        <div class="container"> 
+            <p>
+                <label for="id_tipo">Nome:</label>
+                <input type="text" name="nome" maxlength="100"  id="nome" value="{{ categoria.nome }}">  
+            </p>
+            </p>
+                <label for="id_tipo">Data de Nascimento:</label>
+                <input type="text" name="data_nascimento" maxlength="100"  id="data_nascimento" value="{{ categoria.data_nascimento }}">  
+            </p>
+            <button type="submit" class="btn btn-outline-primary">Salvar</button>
+            <a href="{% url "pg_inicial" %}">
+                <button type="button" class="btn btn-outline-danger">Cancelar</button>
+            </a>
+        </div>
+    </form> {% endcomment %}
+    <form method="post" id='form_cliente' enctype="multipart/form-data">
         {% csrf_token %}
-           
-        
         <p>
-            <label for="id_tipo">Nome:</label>
-            <input type="text" name="nome" maxlength="100"  id="nome" value="{{ categoria.nome }}">  
+            <label for="id_cliente">Nome:</label>
+            <input type="text" name="nome" maxlength="100"  id="nome" value="{{ cliente.nome}}">  
         </p>
+        <p>
+            <label for="id_cliente">Data de Nascimento:</label>
+            <input type="date" name="data_nascimento" maxlength="100"  id="data_nascimento" value="{{ cliente.data_nascimento}}">  
         </p>
-            <label for="id_tipo">Data de Nascimento:</label>
-            <input type="text" name="data_nascimento" maxlength="100"  id="data_nascimento" value="{{ categoria.data_nascimento }}">  
+        <p>
+            <label for="id_cliente">Foto:</label>
+            <input type="file" name="foto">
+        </p>       
+        <p>
+            <img src="{{ foto }}"> 
         </p>
-        <button type="submit" class="btn btn-outline-primary">Salvar</button>
-        <a href="{% url "pg_inicial" %}">
-            <button type="button" class="btn btn-outline-danger">Cancelar</button>
+        <!--<button type="submit">Enviar</button>-->
+        <button type="submit"class='btn btn-primary'>Salvar</button>
+        <a href="{% url "pg_criar_cliente" %}">
+            <button type="button"class='btn btn-danger'>Cancelar</button>
         </a>
-    </form>
+      </form>  
 
     <h2>Lista de Clientes</h2>
 
@@ -63,7 +87,7 @@
                             <div>
                                 <img src="https://img.icons8.com/?size=100&id=fYgQxDaH069W&format=png&color=000000" alt="" width="35" height="35"> </img>
                             </div>
-                            <a href="{% url "pg_excluir_cliente" cliente.id %}" onclick="confirm('Deseja realmete excluir?')">
+                            <a href="{% url "pg_excluir_cliente" cliente.id %}" onclick="return confirm('Deseja realmete excluir?')">
                                 <span class="btn btn-outline-danger">Excluir cliente</span>
                             </a>
                         </div>
@@ -72,4 +96,5 @@
             {% endfor %}
         </tbody>
     </table> 
+</div>
 {% endblock %}

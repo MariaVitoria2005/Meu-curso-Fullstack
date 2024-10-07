@@ -9,29 +9,36 @@
 {% endblock  %}
 
 {% block conteudo %}
+<div class="container">
         <a href="{% url "pg_inicial" %}">
             <button>Voltar</button>
         </a>
-        <h2>Formulário Produto</h2>
+
+        <h2 class="text-success">Formulário Produto:</h2>
 
         <form method="post" enctype="multipart/form-data">
             {% csrf_token %}
-            {{ form_produto.as_p }}
-            <button type="submit" class="btn btn-outline-primary">Salvar</button>
-            <a href="{% url "pg_inicial" %}">
-                <button type="button" class="btn btn-outline-danger">Cancelar</button>
-            </a>
+            <div class="container">
+                <p>
+                    <label for="id_produto">Nome:</label>
+                    <input type="text" name="nome" maxlength="100"  id="nome" value="{{ produto.nome}}">  
+                </p>
+                <p>
+                    <label for="id_produto">Valor:</label>
+                    <input type="text" name="valor" maxlength="100"  id="valor" value="{{ produto.valor}}">  
+                </p>
+    
+                <p>
+                    <label for="id_produto">Descrição:</label>
+                    <input type="text" name="descricao" maxlength="100"  id="descricao" value="{{ produto.descricao}}">  
+                </p>
+    
+                    <button type="submit" class="btn btn-outline-primary">Salvar</button>
+                <a href="{% url "pg_criar_produto" %}">
+                    <button type="button" class="btn btn-outline-danger">Cancelar</button>
+                </a>
+            </div>
         </form>
-
-        <div class="input-group mb-3">
-            <div class="input-group-prepend">
-              <span class="input-group-text">R$</span>
-            </div>
-            <input type="text" class="form-control" aria-label="Quantia">
-            <div class="input-group-append">
-              <span class="input-group-text">.00</span>
-            </div>
-          </div>
 
         <h2>Lista de produtos</h2>
 
@@ -48,7 +55,7 @@
 
             <tbody >
                 {% for produto in produtos %}
-                    <tr class="">
+                    <tr>
                         <th scope="row">{{ produto.id }}</th>
                         <td>{{ produto.nome }}</td>
                         <td>{{ produto.valor }}</td>
@@ -65,7 +72,7 @@
                                 <div>
                                     <img src="https://img.icons8.com/?size=100&id=fYgQxDaH069W&format=png&color=000000" alt="" width="35" height="35"> </img>
                                 </div>
-                                <a href="{% url "pg_excluir_produto" produto.id %}" onclick="confirm('Deseja realmete excluir?')">
+                                <a href="{% url "pg_excluir_produto" produto.id %}" onclick="return confirm('Deseja realmete excluir?')">
                                     <span class="btn btn-outline-danger">Excluir produto</span>
                                 </a>
                             </div>
@@ -74,5 +81,5 @@
                 {% endfor %}
             </tbody>
         </table>  
-
+</div>
 {% endblock %}

@@ -8,70 +8,69 @@
 {% endblock  %}
 
 {% block conteudo %}
-        <a href="{% url "pg_inicial" %}">
-            <button>Voltar</button>
-        </a>
+<div class="container"> 
+    <a href="{% url "pg_inicial" %}">
+        <button>Voltar</button>
+    </a>
 
-        <a href="{% url "pg_criar_categoria" %}">
-            <button>+ Categoria</button>
-        </a>
+    <a href="{% url "pg_criar_categoria" %}">
+        <button>+ Categoria</button>
+    </a>
 
-        <h2>Formulário Serviço</h2>
+    <h2 class="text-success">Formulário Serviço:</h2>
 
-        <form method="post">
-            {% csrf_token %}
-            <p>
-                <label for="tipo">Tipo servico:</label>
-                <input type = "text" name = "tipo" maxlength = "100"  id = "tipo" value ="{{servico.tipo}}">
-            </p>
-                    
-                    
-            <p>
-                <label for="valor">Valor servico:</label>
-                <input type="number" name="valor" step="0.01" id="valor" value= "{{servico.valor}}">
-            </p>
-                    
-                    
-            <p>
-                <label for="id_empresa">Empresa:</label>
-                <select name="empresa_id" id="empresa_id">
-                    <option value="{{ servico.empresa_id }}" selected="{{ servico.empresa_id }}">{{ servico.empresa.razao_social }}</option>
-                    {% for empresa in empresas %}
-                        <option value="{{ empresa.id }}">{{ empresa.razao_social }} </option>
-                    {% endfor %}
-                </select>
-            </p>
-                    
-                    
-            <p>
-                <label for="id_categoria">Categoria:</label>
-                <select name="categoria_id" id="categoria_id">
-                    <option value="{{ servico.categoria_id }}" selected="{{ servico.categoria_id }}">{{ servico.categoria.tipo }}</option>
-                    {% for categoria in categorias %}
-                        <option value="{{ categoria.id }}">{{ categoria.tipo }}</option>
-                    {% endfor %}
-                </select>
-            </p>
-                <button type="submit" class="btn btn-outline-primary">Salvar</button>
-                <a href="{% url "pg_inicial" %}">
-                    <button type="button" class="btn btn-outline-danger">Cancelar</button>
-                </a>
-        </form>
+    <form method="post">
+    {% csrf_token %}
+    <div class="container">
+        <p>
+            <label for="tipo">Tipo servico:</label>
+            <input type = "text" name = "tipo" maxlength = "100"  id = "tipo" value ="{{servico.tipo}}">
+        </p>
+                
+        <p>
+            <label for="valor">Valor servico:</label>
+            <input type="number" name="valor" step="0.01" id="valor" value= "{{servico.valor}}">
+        </p>
+                            
+        <p>
+            <label for="id_empresa">Empresa:</label>
+            <select name="empresa_id" id="empresa_id">
+                <option value="{{ servico.empresa_id }}" selected="{{ servico.empresa_id }}">{{ servico.empresa.razao_social }}</option>
+                {% for empresa in empresas %}
+                    <option value="{{ empresa.id }}">{{ empresa.razao_social }} </option>
+                {% endfor %}
+            </select>
+        </p>
+                               
+        <p>
+            <label for="id_categoria">Categoria:</label>
+            <select name="categoria_id" id="categoria_id">
+                <option value="{{ servico.categoria_id }}" selected="{{ servico.categoria_id }}">{{ servico.categoria.tipo }}</option>
+                {% for categoria in categorias %}
+                    <option value="{{ categoria.id }}">{{ categoria.tipo }}</option>
+                {% endfor %}
+            </select>
+        </p>
+            <button type="submit" class="btn btn-outline-primary">Salvar</button>
+            <a href="{% url "pg_inicial" %}">
+                <button type="button" class="btn btn-outline-danger">Cancelar</button>
+            </a>
+        </div>
+    </form>
 
-        <h2>Lista de Serviços</h2>
+    <h2>Lista de Serviços</h2>
 
-        <table class=" table table-bordered">
-            <thead>
-              <tr class="alert alert-dark">
+    <table class=" table table-bordered">
+        <thead>
+            <tr class="alert alert-dark">
                 <th scope="col" >ID</th>
                 <th scope="col">TIPO</th>
                 <th scope="col">VALOR</th>
                 <th scope="col">EMPRESA</th>
                 <th scope="col">RAZAO SOCIAL</th>
-                <th scope="col">OPÇÕES</th>
-                
-              </tr>
-            </thead>
+                <th scope="col">OPÇÕES</th> 
+            </tr>
+        </thead>
             <tbody>
                 {% for servico in servicos %}
                     <tr class="">
@@ -100,9 +99,8 @@
                     </tr>
                 {% endfor %}
             </tbody>
-        </table>  
-
-        
+    </table>  
+</div> 
             {% comment %} <div class="card-formulario">
 
                 <span>{{ servico.tipo}}</span>

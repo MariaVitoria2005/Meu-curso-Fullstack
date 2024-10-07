@@ -2,23 +2,140 @@
 {% extends "base.html" %} 
 {% load static %}
 
+
 {% block  titulio %}
-        <script src="{% static 'js/validacoes_ordemservico.js'%}"> </script>
-        <title>Formulário Ordem de Serviço</title>
+<div class="container"> 
+    <script src="{% static 'js/validacoes_ordemservico.js'%}"></script>
+    <title>Formulário Ordem de Serviço</title>
+
+    <a href="{% url "pg_inicial" %}">
+        <button>Voltar</button>
+    </a>
+    <h2 class="text-success">Formulário Ordem de Serviço:</h2>
+</div>
 {% endblock  %}
 
 {% block conteudo %}
-        <a href="{% url "pg_inicial" %}">
-            <button>Voltar</button>
-        </a>
-        <h2>Formulário Ordem de Serviço</h2>
+    <div class="container"> 
+            {% comment %} <form method="post">
+                {% csrf_token %}
+                {{ form_ordemservico.as_p }}
+                <button type="submit" class="btn btn-outline-primary">Salvar</button>
+                <a href="{% url "pg_inicial" %}">
+                    <button type="button" class="btn btn-outline-danger">Cancelar</button>
+                </a>
+            </form> {% endcomment %}
+            <form method="post">
+                {% csrf_token %}
+                        <div classe="row-center">
+                            <div>
+                                {% comment %} <label for="id_cliente">Cliente:</label>
+                                <select name="cliente_id" id="cliente_id">
+                                    <option value="{{ordemservico.cliente_id}}" selected="{{ordemservico.cliente_id}}">{{ordemservico.cliente.nome}}</option>
+                                    {% for cliente in clientes %}
+                                        <option value="{{cliente.id}}">{{cliente.nome}}</option>
+                                    {% endfor %}    
+                                </select> {% endcomment %}
 
-        <form method="post">
-            {% csrf_token %}
-            {{ form_ordemservico.as_p }}
-            <button type="submit" class="btn btn-primary">Salvar</button>
-            <a href="{% url "pg_inicial" %}">
-                <button type="button" class="btn btn-danger">Cancelar</button>
-            </a>
-        </form>
+                                <p>
+                                    <label for="id_cliente">Cliente :</label>
+                                    <input type="text" name="nome" maxlength="100"  id="nome" value="{{ cliente.nome}}">  
+                                </p>
+                                
+                                {% comment %} <label for="id_empresa">Empresa:</label>
+                                <select name="empresa_id" required="" id="empresa_id">
+                                    <option value="{{ordemservico.empresa_id}}" selected="{{ordemservico.empresa_id}}">{{ordemservico.empresa.razao_social}}</option>
+                                    {% for empresa in empresas %}
+                                        <option value="{{empresa.id}}">{{empresa.razao_social}}</option>
+                                    {% endfor %}    
+                                </select> {% endcomment %}
+
+                                <p>
+                                    <label for="id_empresa">Empresa :</label>
+                                    <input type="text" name="razao_social" maxlength="100"  id="razao_social" value="{{ empresa.razao_social }}">  
+                                </p>
+
+                                {% comment %} <label for="id_servico">Serviço:</label>
+                                <select name="servico_id" required="" id="servico_id">
+                                    <option value="{{ordemservico.servico_id}}" selected="{{ordemservico.servico_id}}">{{ordemservico.servico.tipo}}</option>
+                                    {% for servico in servicos %}
+                                        <option value="{{servico.id}}">{{servico.tipo}}</option>
+                                    {% endfor %}    
+                                </select> {% endcomment %}
+
+                                <p>
+                                    <label for="id_servico">Serviço :</label>
+                                    <input type="text" name="tipo" maxlength="100"  id="tipo" value="{{ servico.tipo}}">  
+                                </p>
+
+                                <label for="data">data Inicio do Serviço:</label>
+                                <input type="data" name="data" maxlength="100" id="data" value="{{ ordemservico.data}}">
+
+                                <label for="data">data Têrmino do Serviço:</label>
+                                <input type="data" name="data_finalizacao" maxlength="100" id="data_finalizacao" value="{{ ordemservico.data_finalizacao}}">
+
+                                <label for="status">STATUS:</lebel>
+                                <select name="status" id="status" value="{{ordemservico.status}}">
+                                    <option value="0">Em andamento</option>
+                                    <option value="1">Concluido</option>
+                                </select>
+                            </div> 
+                            <button type="submit" class='btn btn-outline-primary'> Salvar</button>
+                                <a href="{% url "pg_inicial" %}">
+                                    <button type="button" class="btn btn-outline-danger">Cancelar</button>
+                                </a>
+                        </div>
+                    </form>       
+
+                    <h2>Lista de Ordem de Serviços</h2>
+                    <table class="table table-bordered">
+                        <thead>
+                            <tr class="alert alert-dark">
+                                <th scope="col">ID</th>
+                                <th scope="col">NOME CLIENTE</th>
+                                <th scope="col">EMPRESA</th>
+                                <th scope="col">TIPO SERVIÇO</th>
+                                <th scope="col">DATA INICIAL</th>
+                                <th scope="col">DATA FINAL</th>
+                                <th scope="col">STATUS</th>
+                                <th scope="col">OPÇÕES</th>
+                            </tr>
+                        </thead>
+
+                        <tbody>
+                            {% for os in ordemservicos %}
+                                <tr>
+                                    <th scope="row">{{os.id}}</th>
+                                    <td>{{os.cliente.nome}}</td>
+                                    <td>{{os.empresa.razao_social}}</td>
+                                    <td>{{os.servico.tipo}}</td>
+                                    <td>{{os.data}}</td>
+                                    <td>{{os.data_finalizacao}}</td>
+                                    {% if os.status == 0 %}
+                                        <td>Em andamento</tr>
+                                    {% else %}
+                                        <td>Concluido</td>
+                                    {% endif %}
+                                    <td>
+                                        <div class="btns_formulario">
+                                            <div>
+                                                <img src="https://img.icons8.com/?size=100&id=21076&format=png&color=000000" alt="" width="35" height="35"></img>
+                                            </div>
+                                            <a href="{% url "pg_editar_ordemservico" os.id %}">
+                                                <span class="btn btn-outline-primary">Editar Ordemservico</span>
+                                            </a>
+                                        
+                                            <div>
+                                                <img src="https://img.icons8.com/?size=100&id=fYgQxDaH069W&format=png&color=000000" alt="" width="35" height="35"></img>
+                                            </div>
+                                            <a href="{% url "pg_excluir_ordemservico" os.id %}" onclick="return confirm('Deseja realmete excluir?')">
+                                                <span class="btn btn-outline-danger">Excluir Ordemservico</span>
+                                            </a>
+                                        </div>
+                                    </td>
+                                </tr>
+                 {% endfor %}
+            </tbody> 
+        </table>
+    </div>
 {% endblock %}
