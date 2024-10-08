@@ -5,7 +5,7 @@ use SistemaBancoDeDados;
 create table contatos(
 	id integer primary key auto_increment,
 	telefone VARCHAR(191) not null,
-	email VARCHAR(191) not null,
+	email  VARCHAR(191) not null,
     created_at TIMESTAMP,
     updated_at TIMESTAMP,
 );
