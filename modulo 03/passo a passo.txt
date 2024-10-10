@@ -1,0 +1,228 @@
+1°  Criar o Projeto Laravel
+Abra o terminal e execute o seguinte comando:
+
+	composer create-project laravel/laravel Blog_redesocial
+
+2° Acessar o Diretório do Projeto
+Navegue até o diretório do projeto:
+
+	cd Blog_redesocial
+
+3° Configurar o Banco de Dados
+	3.1. Criar o Banco de Dados
+	Acesse o MySQL e crie um banco de dados chamado blog:
+
+	CREATE DATABASE Blog_redesocial;
+
+	3.2. Configurar o .env
+	Edite o arquivo .env para configurar as credenciais do banco de dados. Altere as linhas 	relacionadas ao banco de dados:
+
+
+	DB_CONNECTION=mysql
+	DB_HOST=127.0.0.1
+	DB_PORT=3306
+	DB_DATABASE=Blog_redesocial
+	DB_USERNAME=root
+	DB_PASSWORD=
+
+4°vai até o APP(Providers)e acresente o seguinte abaixo;
+
+	use Illuminate\Support\Facades\Schema;
+
+4.1° depois vai no public funtion boot():void e acresente o seguinte comando;
+
+ class AppServiceProvider extends ServiceProvider
+{
+    /**
+     * Register any application services.
+     */
+    public function register(): void
+    {
+        //
+    }
+
+    /**
+     * Bootstrap any application services.
+     */
+    public function boot(): void
+    {
+        Schema::defaultStringLength(191);
+    }
+}
+
+5° depois limpar as configurações:
+vai ao terminal e digite esse comando:
+	php artisan config:cache
+
+6°Criar as tabelas:
+php artisan make:model nome_da_tabela -m
+
+7°Configurar as migrações das tabelas:
+preenchendo com os campos que receberam os dados:
+exemplo:
+	tipo
+	nome
+	endereço
+
+8°depois vai na migrations criadas e faz o seguinte exemplo:
+exemplo:
+
+	return new class extends Migration
+{
+    /**
+     * Run the migrations.
+     */
+    public function up(): void
+    {
+        Schema::create('postagems', function (Blueprint $table) {
+            $table->id();
+            $table->string('titulo');
+            $table->longText('conteudo');
+            $table->date('data_postagem');
+            $table->unsignedBigInteger('user_id');
+            $table->foreign('user_id')
+                  ->references('id')
+                  ->on('users')
+                  ->onDelete('cascade');
+            $table->timestamps();
+        });
+    }
+
+    /**
+     * Reverse the migrations.
+     */
+    public function down(): void
+    {
+        Schema::dropIfExists('postagems');
+    }
+};
+
+		OU
+
+
+return new class extends Migration
+{
+    /**
+     * Run the migrations.
+     */
+    public function up(): void
+    {
+        Schema::create('comentarios', function (Blueprint $table) {
+            $table->id();
+            $table->longText('conteudo');
+            $table->date('data_comentario');
+            $table->unsignedBigInteger('user_id');
+            $table->foreign('user_id')
+                 ->references('id')
+                 ->on('users')
+                 ->onDelete('cascade');
+            $table->unsignedBigInteger('postagem_id');
+            $table->foreign('postagem_id')
+                 ->references('id')
+                 ->on('postagem')
+                 ->onDelete('cascade');
+            $table->timestamps();
+        });
+    }
+
+    /**
+     * Reverse the migrations.
+     */
+    public function down(): void
+    {
+        Schema::dropIfExists('comentarios');
+    }
+};
+
+
+9° Criar o banco de dados no HeisiSQL:
+coloque o seguinte comando:
+	CREATE DATABASE Blog_redesocial
+
+10°depois roda o comando:
+	(php artisan migrate) 
+para aplicar no comando de dados
+
+11°depois confira se foi para o HeisiSQL:
+
+12°depois abra o MySQL Workbench:
+12.1 vai em Database seleciona a opção:Reverse Enginner... ou crtl+R.
+
+depois vai aparecer algumas tabelas aleatórias, mais só pode deixar as principais, depois você da um clique duplo na tabela e apague a opção que tem "ID";
+exemplo:
+	user_id BIGINT
+
+12.2 Depois vai em file na opção:
+	EXPORT->Export as PNG...
+
+12.3 depois escolha a pasta q você vai salvar a imagem das tabelas.
+
+13°depois abra o Heidisql e com o botão direito clicar emcima do nome_do_banco e na opção (exportar banco de dados como SQL).
+
+13.1 faça as seguintes opção:
+ 
+Banco de dados: (CRIAR)
+Tabela: (CRIAR)
+Dados: SEM DADOS
+Saída: ARQUIVO.SQL ÚNICO
+Nome do arquivo:.............................
+
+14°Depois fazer a autenticação: vai ao terminal do visualStudio.
+INSTALAR A LARAVEL BREEZE:
+	composer require laravel/breeze --dev
+
+INSTALAR O BREEZE:
+	php artisan breeze:install
+
+14.1 Escolha as seguintes opções:
+	1°-blade
+	2°-yes
+	3°-0
+
+15°depois dá um migrate:	
+	php artisan migrate
+
+16°colocar pra rodar:
+	php artisan serve
+ INFO  Server running on [http://127.0.0.1:8000].
+
+17°Depois clica na opção (dashboard-> "cadastrar")
+17.1 coloque seu Nome, Email, Password, confirm password
+
+18ºdeois colocar em português:
+vai no visualStudio procure pelo ('RESOURCES','VIWS','AUTH',"register.blade.php","login.blade.php")
+
+18.1°"register.blade.php":colocar em português(paaword)
+<!-- Password -->
+        <div class="mt-4">
+            <x-input-label for="password" :value="__('Senha')" />
+ <!-- Confirm Password -->
+        <div class="mt-4">
+            <x-input-label for="password_confirmation" :value="__('Confirmar Senha')" />
+
+18°.2 "login.blade.php":colocar em português(paaword)
+<!-- Password -->
+        <div class="mt-4">
+            <x-input-label for="password" :value="__('Senha')" />
+<!-- Confirm Password -->
+        <div class="mt-4">
+            <x-input-label for="password_confirmation" :value="__('Confirmar Senha')" />
+
+19°se você deseja alterar ou acresentar alguma coluna na  tabela, você pode colocar o seguinte comando:
+	php artisan make:migration alter_table_nome_da_tabela--table=nome_da_tabela
+20°Na migração criada na function UP acrescentar  as colunas que você deseja colocar:
+exemplo:
+    public function up(): void
+    {
+        Schema::table('users', function (Blueprint $table) {
+            $table->string('apelido');
+            $table->string('foto');
+        });
+    }
+
+21°depois dá um migrate:
+	php artisan migrate
+
+21.1 depois vai do HeidiSQL, vai na tabela que você alterou e verifique se as colunas que você acresentou estar lá.
+
+22°
