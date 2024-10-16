@@ -1,3 +1,5 @@
+passo a passo da prova 01
+
 1°  Criar o Projeto Laravel
 Abra o terminal e execute o seguinte comando:
 
@@ -66,6 +68,7 @@ exemplo:
 
 8°depois vai na migrations criadas e faz o seguinte exemplo:
 exemplo:
+8.1 Importe isso: ("use Illuminate\Support\Facades\Schema;")
 
 	return new class extends Migration
 {
@@ -225,4 +228,3 @@ exemplo:
 
 21.1 depois vai do HeidiSQL, vai na tabela que você alterou e verifique se as colunas que você acresentou estar lá.
 
-22°
