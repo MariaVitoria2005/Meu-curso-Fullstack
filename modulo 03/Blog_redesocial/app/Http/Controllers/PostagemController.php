@@ -13,6 +13,7 @@ class PostagemController extends Controller
     public function index()
     {
         $postagem = Postagem::all();
+        
 
         return view('Postagem.index', ['postagems' => $postagem]);
     }
@@ -22,7 +23,7 @@ class PostagemController extends Controller
      */
     public function create()
     {
-        return view('postagem.create');
+        //
     }
 
     /**
@@ -30,16 +31,7 @@ class PostagemController extends Controller
      */
     public function store(Request $request)
     {
-        $request->validate([
-            'titulo' => 'required',
-            'conteudo' => 'required',
-            'data_postagem' => 'required',
-            'foto' => 'required',
-        ]);
-
-        Postagem::create($request->all());
-
-        return redirect()->route('postagem.index');
+        //
     }
 
     /**
@@ -47,7 +39,7 @@ class PostagemController extends Controller
      */
     public function show(Postagem $postagem)
     {
-        return view("Postagem.show", compact("postagem"));
+       //
     }
 
     /**
@@ -55,15 +47,13 @@ class PostagemController extends Controller
      */
     public function edit( $id)
     {
-        $postagem = Postagem::find($id);
-
-        return view('postagem.editar', ['postagens' => $postagem]);
+        //
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request,  $id)
+    public function update(Request $request, $id)
     {
         $postagem = Postagem::find($id);
         $postagem->update($request->all());
