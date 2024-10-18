@@ -1,0 +1,38 @@
+passo a passo 02
+
+1°criar tela de postagem:
+Entre no visualstudio abra a pasta RESOURCES->VIEW, depois criar a pasta POSTAGEM e cria só o arquivo index.blade.php:
+exemplo:
+<html>
+     <body>    
+    	  <div class="container">
+        	<div class="row">
+            	<div class="col-sm">
+            	     Uma de três colunas
+           	</div>
+            	
+           	<div class="col-sm">
+            	     @foreach($postagems as $postagem)
+                <div class="card" style="width: 18rem;">
+                    <img class="card-img-top" src="{{ asset('storage/'.$postagem->foto) }}" alt="Imagem de capa do card">
+                    <div class="card-body">
+                        <h5 class="card-title"> {{ $postagem->titulo }}</h5>
+                        <p class="card-text">{{ $postagem->conteudo }}</p>
+                        <a href="#" class="btn btn-primary">Visitar</a>
+                    </div>
+                </div>                 
+           		 @endforeach
+                </div>
+            	     <div class="col-sm">
+            	         Uma de três colunas
+            	     </div>
+        	</div>
+    	  </div>
+      </body>
+</html>
+
+2° criar a pasta para fotos:
+abra a pasta STORAGE->PUBLIC,depois cria  a pasta para as fotos
+
+2.1° Rota do site para pegar as fotos:
+ https://www.pexels.com/pt-br/

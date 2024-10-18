@@ -213,6 +213,7 @@ vai no visualStudio procure pelo ('RESOURCES','VIWS','AUTH',"register.blade.php"
 
 19°se você deseja alterar ou acresentar alguma coluna na  tabela, você pode colocar o seguinte comando:
 	php artisan make:migration alter_table_nome_da_tabela--table=nome_da_tabela
+
 20°Na migração criada na function UP acrescentar  as colunas que você deseja colocar:
 exemplo:
     public function up(): void
@@ -222,6 +223,8 @@ exemplo:
             $table->string('foto');
         });
     }
+21° rode o comando da foto:
+	php artisan storage:link
 
 21°depois dá um migrate:
 	php artisan migrate
