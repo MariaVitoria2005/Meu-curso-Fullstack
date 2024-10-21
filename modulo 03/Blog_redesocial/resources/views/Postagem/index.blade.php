@@ -28,7 +28,7 @@
 
                 <div class="col-sm">
                     <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalExemplo">
-                    Login
+                        Login
                     </button>
                 </div>
 
@@ -36,9 +36,9 @@
                     <div class="modal-dialog" role="document">
                         <div class="modal-content">
                             <div class="modal-header">
-                                <h5 class="modal-title" id="exampleModalLabel">Cadastro</h5>
+                                <h5 class="modal-title" id="exampleModalLabel">Login</h5>
                                 <button type="button" class="close" data-dismiss="modal" aria-label="Fechar">
-                                <span aria-hidden="true">&times;</span>
+                                    <span aria-hidden="true">&times;</span>
                                 </button>
                             </div>
 
@@ -57,7 +57,6 @@
                                         <input type="checkbox" class="form-check-input" id="exampleCheck1">
                                         <label class="form-check-label" for="exampleCheck1">Clique em mim</label>
                                     </div>
-                                    <button type="submit" class="btn btn-primary">Enviar</button>
                                 </form>
                             </div>
 

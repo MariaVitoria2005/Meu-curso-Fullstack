@@ -226,8 +226,10 @@ exemplo:
 21° rode o comando da foto:
 	php artisan storage:link
 
-21°depois dá um migrate:
+22°depois dá um migrate:
 	php artisan migrate
 
-21.1 depois vai do HeidiSQL, vai na tabela que você alterou e verifique se as colunas que você acresentou estar lá.
+22.1 depois vai do HeidiSQL, vai na tabela que você alterou e verifique se as colunas que você acresentou estar lá.
 
+23°comando para limpar as rotas:
+	php artisan route:cache

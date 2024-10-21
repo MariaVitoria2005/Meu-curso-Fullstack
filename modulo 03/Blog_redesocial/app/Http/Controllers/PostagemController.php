@@ -14,7 +14,6 @@ class PostagemController extends Controller
     {
         $postagem = Postagem::all();
         
-
         return view('Postagem.index', ['postagems' => $postagem]);
     }
 
