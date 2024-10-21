@@ -8,11 +8,13 @@
     </head>
     <body>    
         <div class="container">
-            <div class="row">
+            <div class="row">            
                 <div class="col-sm">
+                @auth
                     <img class="img-fluid"src="{{ asset('storage/'.Auth::user()->foto ) }}"  style="width: 150px; height: 150px;">
+                @endauth
                 </div>
-
+            
                 <div class="col-sm">
                     @foreach($postagems as $postagem)
                         <div class="card" style="width: 18rem;">
@@ -26,11 +28,28 @@
                     @endforeach
                 </div>
 
-                <div class="col-sm">
+                
+                <div class="col-sm">   
+                    @guest            
                     <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalExemplo">
                         Login
-                    </button>
-                </div>
+                    </button>  
+                    @endguest             
+                
+                    @auth
+                    <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#modalExemplo">
+                        <form method="POST" action="{{ route('logout') }}">
+                            @csrf
+
+                            <x-dropdown-link :href="route('logout')"
+                                    onclick="event.preventDefault();
+                                        this.closest('form').submit();">
+                                {{ __('Sair') }}
+                            </x-dropdown-link>
+                        </form>        
+                    </button>    
+                    @endauth           
+                </div>               
 
                 <div class="modal fade" id="modalExemplo" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                     <div class="modal-dialog" role="document">
@@ -43,26 +62,34 @@
                             </div>
 
                             <div class="modal-body">
-                                <form>
-                                    <div class="form-group">
-                                        <label for="exampleInputEmail1">Endereço de email</label>
-                                        <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Seu email">
-                                        <small id="emailHelp" class="form-text text-muted">Nunca vamos compartilhar seu email, com ninguém.</small>
+                                <x-auth-session-status class="mb-4" :status="session('status')" />
+
+                                <form method="POST" action="{{ route('login') }}">
+                                    @csrf
+
+                                    <!-- Email Address -->
+                                    <div>
+                                        <x-input-label for="email" :value="__('Email')" />
+                                        <x-text-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required autofocus autocomplete="username" />
+                                        <x-input-error :messages="$errors->get('email')" class="mt-2" />
                                     </div>
-                                    <div class="form-group">
-                                        <label for="exampleInputPassword1">Senha</label>
-                                        <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Senha">
+
+                                    <!-- Password -->
+                                    <div class="mt-4">
+                                        <x-input-label for="password" :value="__('Senha')" />
+
+                                        <x-text-input id="password" class="block mt-1 w-full"
+                                            type="password"
+                                            name="password"
+                                            required autocomplete="current-password" />
+                                        <x-input-error :messages="$errors->get('password')" class="mt-2" />
                                     </div>
-                                    <div class="form-group form-check">
-                                        <input type="checkbox" class="form-check-input" id="exampleCheck1">
-                                        <label class="form-check-label" for="exampleCheck1">Clique em mim</label>
-                                    </div>
+                                    <button type="submit" class="btn btn-primary">Entrar</button>
                                 </form>
                             </div>
 
                             <div class="modal-footer">
-                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
-                                <button type="button" class="btn btn-primary">Entrar</button>
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>                          
                             </div>
                         </div>
                     </div>
