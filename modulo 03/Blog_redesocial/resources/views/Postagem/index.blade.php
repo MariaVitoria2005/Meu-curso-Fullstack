@@ -10,9 +10,9 @@
         <div class="container">
             <div class="row">            
                 <div class="col-sm">
-                @auth
-                    <img class="img-fluid"src="{{ asset('storage/'.Auth::user()->foto ) }}"  style="width: 150px; height: 150px;">
-                @endauth
+                    @auth
+                        <img class="img-fluid"src="{{ asset('storage/'.Auth::user()->foto ) }}"  style="width: 150px; height: 150px;">
+                    @endauth
                 </div>
             
                 <div class="col-sm">
@@ -31,23 +31,22 @@
                 
                 <div class="col-sm">   
                     @guest            
-                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalExemplo">
-                        Login
-                    </button>  
+                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalExemplo">
+                            Login
+                        </button>  
                     @endguest             
                 
                     @auth
-                    <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#modalExemplo">
-                        <form method="POST" action="{{ route('logout') }}">
-                            @csrf
-
-                            <x-dropdown-link :href="route('logout')"
+                        <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#modalExemplo">
+                            <form method="POST" action="{{ route('logout') }}">
+                                @csrf
+                                <x-dropdown-link :href="route('logout')"
                                     onclick="event.preventDefault();
-                                        this.closest('form').submit();">
-                                {{ __('Sair') }}
-                            </x-dropdown-link>
-                        </form>        
-                    </button>    
+                                    this.closest('form').submit();">
+                                    {{ __('Sair') }}
+                                </x-dropdown-link>
+                            </form>        
+                        </button>    
                     @endauth           
                 </div>               
 
@@ -66,7 +65,6 @@
 
                                 <form method="POST" action="{{ route('login') }}">
                                     @csrf
-
                                     <!-- Email Address -->
                                     <div>
                                         <x-input-label for="email" :value="__('Email')" />
